@@ -41,11 +41,11 @@
 		},
 		"./utils": {
 			"types": "./dist/extra/utils.d.ts",
-			"exports": "./dist/extra/utils.js"
+			"import": "./dist/extra/utils.js"
 		},
 		"./theme": {
 			"types": "./dist/extra/themeStore.d.ts",
-			"exports": "./dist/extra/themeStore.js"
+			"import": "./dist/extra/themeStore.js"
 		}
 	},
 	"files": [
@@ -73,13 +73,13 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2",
-		"vitest": "^0.34.0"
+		"vitest": "^0.34.0",
+		"@changesets/cli": "^2.26.2"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@changesets/cli": "^2.26.2",
 		"svelte-highlight": "^7.3.0",
 		"svelte-markdown": "^0.4.0"
 	}
