@@ -41,7 +41,7 @@ export const readMd = async (
 		return [null, err as ReadFileError];
 	}
 };
-function generateTableOfContents(mdText: string): { degree: number; name: string }[] {
+export function generateTableOfContents(mdText: string): { degree: number; name: string }[] {
 	const lines = mdText.split('\n');
 	const toc = [];
 	const headerRegex = /^(#+)\s+(.*)/;

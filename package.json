@@ -1,12 +1,33 @@
 {
-	"name": "sveltedocs",
-	"version": "0.0.1",
+	"name": "sveltedocsmaker",
+	"version": "0.0.0",
+	"description": "Generate documentation easily using SvelteDocsMaker",
+	"maintainers": [
+		"Aymen keskas <keskasaymen8@gmail.com> (https://aymenkeskas.vercel.app/)"
+	],
+	"engines": {
+		"node": ">=16.14"
+	},
+	"keywords": [
+		"sveltekit",
+		"documentation",
+		"generator",
+		"javascript",
+		"typescript",
+		"svelte"
+	],
+	"author": "Keskas aymen",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Shinji13/SvelteDocsMaker"
+	},
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run package",
+		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
-		"prepublishOnly": "npm run package",
+		"release": "pnpm run package && npx changeset publish",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
@@ -19,12 +40,12 @@
 			"svelte": "./dist/index.js"
 		},
 		"./utils": {
-			"types": "./dist/extra/utlis.d.ts",
-			"import": "./dist/extra/utils.js"
+			"types": "./dist/extra/utils.d.ts",
+			"exports": "./dist/extra/utils.js"
 		},
 		"./theme": {
 			"types": "./dist/extra/themeStore.d.ts",
-			"import": "./dist/extra/themeStore.js"
+			"exports": "./dist/extra/themeStore.js"
 		}
 	},
 	"files": [
@@ -58,6 +79,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
+		"@changesets/cli": "^2.26.2",
 		"svelte-highlight": "^7.3.0",
 		"svelte-markdown": "^0.4.0"
 	}
