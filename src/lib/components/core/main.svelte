@@ -32,7 +32,7 @@
 		codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
 		heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
 	} = {};
-	export let CustomToc: ComponentType<
+	export let CustomToc: null | ComponentType<
 		SvelteComponent<{
 			links: {
 				name: string;
@@ -41,14 +41,14 @@
 			navBarHeight: number;
 		}>
 	> = null;
-	export let CustomSectionsMenu: ComponentType<
+	export let CustomSectionsMenu: null | ComponentType<
 		SvelteComponent<{ sectionsMap: Map<string, string[]>; pathname: string }>
 	> = null;
-	export let CustomLocation: ComponentType<SvelteComponent<{ pathname: string }>> = null;
-	export let CustomQuickNav: ComponentType<
+	export let CustomLocation: null | ComponentType<SvelteComponent<{ pathname: string }>> = null;
+	export let CustomQuickNav: null | ComponentType<
 		SvelteComponent<{ sectionsMap: Map<string, string[]>; pathname: string }>
 	> = null;
-	export let CustomNavBar: ComponentType<
+	export let CustomNavBar: null | ComponentType<
 		SvelteComponent<{
 			sectionMenuAppear: boolean;
 			pathname: string;
@@ -179,9 +179,13 @@
 			/>
 		{:else}
 			<NavBar
-				{pathname}
 				{sectionMenuAppear}
-				settings={{ links: navlinks, logo: navlogo, githubLink, discordLink, doubleMode }}
+				{pathname}
+				links={navlinks}
+				logo={navlogo}
+				{githubLink}
+				{discordLink}
+				{doubleMode}
 				on:hideMobileMenu={() => (sectionMenuAppear = false)}
 				on:showMobileMenu={() => (sectionMenuAppear = true)}
 			/>
@@ -299,6 +303,7 @@
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		line-height: var(--lhbody);
+		color: var(--font);
 		font-weight: 400;
 		white-space: normal;
 	}

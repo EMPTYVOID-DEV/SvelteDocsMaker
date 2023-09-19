@@ -54,12 +54,12 @@
 		display: flex;
 		align-items: center;
 		font-weight: bold;
+		color: var(--font);
 		font-size: var(--body);
 		line-height: var(--lhbody);
 		gap: 5px;
 	}
 	button i {
-		color: var(--font);
 		font-weight: bold;
 		font-size: small;
 	}

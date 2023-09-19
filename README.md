@@ -1,30 +1,36 @@
-#  Easy documentation with `sveltedocsmaker`
+# Easy Documentation with `sveltedocsmaker`
 
 ## Overview
 
-The `sveltedocsmaker` documentation component is a Svelte package that simplifies the process of creating documentation routes . This component provides a customizable and responsive documentation layout with various configuration options.
+The `sveltedocsmaker` documentation component is a Svelte package that simplifies the process of creating documentation routes. This component provides a customizable and responsive documentation layout with various configuration options.
 
 ## Installation
 
-You can install sveltedocsmaker from npm registry
+You can install `sveltedocsmaker` from the npm registry using one of the following package managers:
+
 ### npm
 
-```Bash
+```bash
 npm install sveltedocsmaker@latest
 ```
+
+````
+
 ### yarn
 
-```Bash
-yarn install sveltedocsmaker@latest
+```bash
+yarn add sveltedocsmaker@latest
 ```
+
 ### pnpm
 
-```Bash
-pnpm install sveltedocsmaker@latest
+```bash
+pnpm add sveltedocsmaker@latest
 ```
+
 ## Usage
 
-## Main component
+### Main Component
 
 To use the `sveltedocsmaker` documentation component in your project, follow these steps:
 
@@ -125,12 +131,20 @@ import { Main } from 'sveltedocsmaker';
 
 ### Utils
 
-sveltedocsmaker provide couple functions that will speed up your development process.
+`sveltedocsmaker` provides a couple of functions that are intended for use with SvelteKit routes and assume that the Markdown files exist under the `static/docs` folder by default. Additionally, the SvelteKit routes should contain `[category]/[section]/` (both `+page.svelte` and `+page.server.ts`). These functions are specifically designed for this structure:
+
+- **Folder Structure**: Your documentation should be organized in folders with category names, and each category folder should contain sections as Markdown files.
+
+- **Naming Convention**: The category folder and its section Markdown files should be named the same as the entries in the `sectionsMap` that you pass to the main component.
+
+Here are the updated utility functions:
+
 #### `readMd(section: string, category: string)`
 
-This asynchronous function reads a Markdown file associated with a specific section and category. It returns a promise that resolves to an array containing two elements:
+This asynchronous function reads a Markdown file associated with a specific section and category from the `static/docs` folder. It is intended for use with SvelteKit dynamic routes and should be placed inside the server load function. It returns a promise that resolves to an array containing two elements:
 
 1. `{ md: string; toc: { degree: number; name: string }[] } | null`: An object with the Markdown content (`md`) and the table of contents (`toc`). If the file is successfully read, this object will contain the Markdown content and its corresponding table of contents. Otherwise, it will be `null`.
+
 2. `ReadFileError | null`: An error object (`ReadFileError`) if there was an issue reading the file. If successful, this will be `null`.
 
 #### `generateTableOfContents(mdText: string)`
@@ -140,7 +154,7 @@ This function generates a table of contents from the provided Markdown text. It 
 - `degree`: The heading level of the entry.
 - `name`: The name or text of the heading.
 
-#### `findSectionNeigbors(sectionsMap: Map<string, string[]>, sectionName: string)`
+#### `findSectionNeighbors(sectionsMap: Map<string, string[]>, sectionName: string)`
 
 Given a `sectionsMap` (a map that associates section names with categories) and a `sectionName`, this function finds the previous and next sections within the map based on the current section. It returns an object with two properties:
 
@@ -161,7 +175,9 @@ This function listens for scroll events in the document and triggers a callback 
 
 #### `closeSectionMenu(callback: () => void)`
 
-This function listens to changes in screen width (e.g., on mobile devices) and triggers a callback when the screen width is greater than or equal to 768 pixels. It can be used to close a section menu when the screen size changes.
+This function listens to changes in screen width (e.g., on mobile devices) and triggers a callback when the screen width is greater than or equal to 768 pixels. It can be used to close a section menu when the
+
+screen size changes.
 
 #### `getColorLevels(color: string): [string, string, string]`
 
@@ -184,11 +200,4 @@ These functions are essential for various aspects of the `sveltedocsmaker` packa
 ## License
 
 This package is distributed under the [MIT License](link-to-license-file).
-
-## Support and Feedback
-
-If you encounter any issues, have questions, or would like to provide feedback, please open an issue on the [GitHub repository](link-to-repo) or contact us at [support@example.com](mailto:support@example.com).
-
----
-
-Please replace placeholders like `your-username`, `link-to-license-file`, `link-to-repo`, and others with your actual package and repository details. Customize the example usage section with appropriate data and props according to your project's requirements.
+````

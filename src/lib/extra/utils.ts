@@ -43,7 +43,7 @@ export const readMd = async (
 };
 export function generateTableOfContents(mdText: string): { degree: number; name: string }[] {
 	const lines = mdText.split('\n');
-	const toc = [];
+	const toc: { degree: number; name: string }[] = [];
 	const headerRegex = /^(#+)\s+(.*)/;
 
 	for (const line of lines) {

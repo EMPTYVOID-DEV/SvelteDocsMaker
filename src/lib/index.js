@@ -1,5 +1,5 @@
 // Reexport your entry components here
 import Main from './components/core/main.svelte';
-import NavBar from './components/core/navBar.svelte';
+import HomeNav from './components/core/exportedNavbar.svelte';
 
-export { Main, NavBar };
+export { Main, HomeNav };

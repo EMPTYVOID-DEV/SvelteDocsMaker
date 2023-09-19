@@ -1,23 +1,44 @@
 <script lang="ts">
 	import { theme } from '$lib/extra/themeStore';
+	import { getColorLevels } from '$lib/extra/utils';
 	import { createEventDispatcher } from 'svelte';
-	export let sectionMenuAppear: boolean;
+	export let mobileToggle: boolean = true;
 	export let pathname: string;
 	export let links: {
 		label: string;
 		href: string;
-	}[];
-	export let doubleMode: boolean;
-	export let githubLink: string;
-	export let discordLink: string;
+	}[] = [];
+	export let doubleTheme: boolean = true;
+	export let githubLink: string = '';
+	export let discordLink: string = '';
 	export let logo: {
 		darkIcon: string;
 		lightIcon: string;
+	} = {
+		darkIcon: '',
+		lightIcon: ''
 	};
+	export let lightPrimary: string = '#3366FF';
+	export let darkPrimary: string = '#9f7cdc';
+	export let darkFontColor: string = '#140f0e';
+	export let lightFontColor: string = '#f0e8e8';
+	export let bodyFont: string = `Helvetica, sans-serif`;
+	export let h4: string = 'clamp(1.125rem, calc(1.15rem + ((1vw - 0.48rem) * 0.3472)), 1.2rem)';
+	let toggleOn = false;
 	const toggleDispatcher = createEventDispatcher();
+	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
 </script>
 
-<nav id="navBar">
+<nav
+	id="navBar"
+	style="
+     --primary800:{primaryColors[0]};
+     --primary100:{primaryColors[2]};
+     --font:{$theme ? darkFontColor : lightFontColor}; 
+     --h4:{h4};
+     --bodyFont:{bodyFont};
+"
+>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -48,7 +69,7 @@
 				<i class="fa-brands fa-discord" />
 			</a>
 		{/if}
-		{#if doubleMode}
+		{#if doubleTheme}
 			<div class="toggle">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -72,22 +93,26 @@
 		{/if}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<i
-			class="fa-solid fa-bars toggler"
-			id={sectionMenuAppear ? 'hidden' : ''}
-			on:click={() => {
-				toggleDispatcher('showMobileMenu');
-			}}
-		/>
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<i
-			class="fa-solid fa-xmark toggler"
-			id={sectionMenuAppear ? '' : 'hidden'}
-			on:click={() => {
-				toggleDispatcher('hideMobileMenu');
-			}}
-		/>
+		{#if mobileToggle}
+			<i
+				class="fa-solid fa-bars toggler"
+				id={toggleOn ? 'hidden' : ''}
+				on:click={() => {
+					toggleOn = true;
+					toggleDispatcher('showMobileMenu');
+				}}
+			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<i
+				class="fa-solid fa-xmark toggler"
+				id={toggleOn ? '' : 'hidden'}
+				on:click={() => {
+					toggleOn = false;
+					toggleDispatcher('hideMobileMenu');
+				}}
+			/>
+		{/if}
 	</div>
 </nav>
 
@@ -110,6 +135,9 @@
 		text-transform: capitalize;
 		font-size: var(--h4);
 		font-weight: bold;
+		font-family: var(--bodyFont);
+		color: var(--font);
+		white-space: normal;
 	}
 	#active {
 		color: var(--primary800);

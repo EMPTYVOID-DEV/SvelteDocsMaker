@@ -2,7 +2,7 @@
 	import { removeUrlEncoding } from '$lib/extra/utils';
 
 	export let pathname: string;
-	let location = [];
+	let location: string[] = [];
 	$: {
 		location = [...pathname.split('/')];
 		location.shift();

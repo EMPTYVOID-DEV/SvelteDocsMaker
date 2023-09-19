@@ -1,6 +1,6 @@
 {
 	"name": "sveltedocsmaker",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Generate documentation easily using SvelteDocsMaker",
 	"maintainers": [
 		"Aymen keskas <keskasaymen8@gmail.com> (https://aymenkeskas.vercel.app/)"
@@ -79,6 +79,19 @@
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
+	"typesVersions": {
+		">4.0": {
+			".": [
+				"./dist/index.d.ts"
+			],
+			"utils": [
+				"./dist/extra/utils.d.ts"
+			],
+			"theme": [
+				"./dist/extra/themeStore.d.ts"
+			]
+		}
+	},
 	"dependencies": {
 		"svelte-highlight": "^7.3.0",
 		"svelte-markdown": "^0.4.0"

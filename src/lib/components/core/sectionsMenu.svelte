@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	export let pathname: string;
 	import { closeSectionMenu, removeUrlEncoding } from '$lib/extra/utils';
 	import { createEventDispatcher } from 'svelte';
+	export let pathname: string;
 	export let sectionsMap: Map<string, string[]>;
 	const toggleDispatcher = createEventDispatcher();
 	$: currentSection = pathname.split('/').at(-1);

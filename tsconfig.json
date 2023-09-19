@@ -10,7 +10,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "NodeNext",
+		"moduleResolution": "Node",
 		"lib": ["es2020"],
 		"target": "es2019"
 	}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let pathname: string;
 	import { findSectionNeigbors } from '$lib/extra/utils';
-	export let sectionsMap;
+	export let sectionsMap: Map<string, string[]>;
 	let neigbors = {
 		previous: {
 			section: '',
@@ -14,7 +14,7 @@
 	};
 	$: {
 		let location = [...pathname.split('/')];
-		neigbors = findSectionNeigbors(sectionsMap, location.at(-1));
+		neigbors = findSectionNeigbors(sectionsMap, location.at(-1) as string);
 		location.shift();
 	}
 </script>
