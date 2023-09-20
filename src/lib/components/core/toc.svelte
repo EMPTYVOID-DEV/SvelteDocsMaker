@@ -15,24 +15,32 @@
 	});
 </script>
 
-<h4>On this page</h4>
-<div class="links">
-	{#each links as link}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<a
-			class="link"
-			id={link.name.toLowerCase() == currentHeader.toLowerCase() ? 'active' : ''}
-			on:click={() => {
-				scrollToHeader(link.name, navBarHeight);
-			}}
-		>
-			<span class={degreeClasses[link.degree - 1]}>{link.name}</span>
-		</a>
-	{/each}
+<div class="tocContainer">
+	<h4>On this page</h4>
+	<div class="links">
+		{#each links as link}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<a
+				class="link"
+				id={link.name.toLowerCase() == currentHeader.toLowerCase() ? 'active' : ''}
+				on:click={() => {
+					scrollToHeader(link.name, navBarHeight);
+				}}
+			>
+				<span class={degreeClasses[link.degree - 1]}>{link.name}</span>
+			</a>
+		{/each}
+	</div>
 </div>
 
 <style>
+	.tocContainer {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
 	.links {
 		display: flex;
 		flex-direction: column;

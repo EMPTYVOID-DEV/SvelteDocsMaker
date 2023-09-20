@@ -37,6 +37,7 @@
 	#sectionsNav {
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 		width: 90%;
 	}
 	.category {
@@ -61,7 +62,7 @@
 		padding-block: 5px;
 	}
 	.section span {
-		font-weight: bold;
+		font-weight: 600;
 		font-size: var(--h4);
 	}
 	.section:hover {

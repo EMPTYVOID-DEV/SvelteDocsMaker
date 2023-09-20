@@ -355,8 +355,6 @@
 	}
 	#sidebar {
 		width: 100%;
-		display: flex;
-		flex-direction: column;
 		overflow-x: hidden;
 		overflow-y: auto;
 	}
@@ -370,8 +368,6 @@
 	#toc {
 		position: sticky;
 		width: 100%;
-		display: flex;
-		flex-direction: column;
 		overflow-x: hidden;
 		padding-bottom: 20px;
 	}
