@@ -1,47 +1,15 @@
 # Sveltedocsmaker
 
-1. [[#Overview|Overview]]
-1. [[#Demo|Demo]]
-1. [[#Installation|Installation]]
-	1. [[#Installation#npm|npm]]
-	1. [[#Installation#yarn|yarn]]
-	1. [[#Installation#pnpm|pnpm]]
-1. [[#Usage|Usage]]
-	1. [[#Usage#Static Folder Structure|Static Folder Structure]]
-		1. [[#Static Folder Structure#Remarks|Remarks]]
-	1. [[#Usage#Documentation Route|Documentation Route]]
-		1. [[#Documentation Route#`+page.server.ts`|`+page.server.ts`]]
-		1. [[#Documentation Route#`+page.svelte`|`+page.svelte`]]
-1. [[#UI Layout|UI Layout]]
-	1. [[#UI Layout#Note|Note]]
-1. [[#Sveltedocsmaker Components|Sveltedocsmaker Components]]
-	1. [[#Sveltedocsmaker Components#`Main.svelte`|`Main.svelte`]]
-		1. [[#`Main.svelte`#`data` (required)|`data` (required)]]
-		1. [[#`Main.svelte`#`sectionMap` (required)|`sectionMap` (required)]]
-		1. [[#`Main.svelte`#`pathname` (required)|`pathname` (required)]]
-		1. [[#`Main.svelte`#`font props` (optional)|`font props` (optional)]]
-		1. [[#`Main.svelte`#`color props` (optional)|`color props` (optional)]]
-		1. [[#`Main.svelte`#`gridColumns` (optional)|`gridColumns` (optional)]]
-		1. [[#`Main.svelte`#`Navigation bar settings` (optional)|`Navigation bar settings` (optional)]]
-		1. [[#`Main.svelte`#`custom components`|`custom components`]]
-			1. [[#`custom components`#`mdHandlers`|`mdHandlers`]]
-			1. [[#`custom components`#`CustomLayout parts`|`CustomLayout parts`]]
-	1. [[#Sveltedocsmaker Components#`Location.svelte`|`Location.svelte`]]
-	1. [[#Sveltedocsmaker Components#`QuickNav.svelte`|`QuickNav.svelte`]]
-	1. [[#Sveltedocsmaker Components#`Toc.svelte`|`Toc.svelte`]]
-		1. [[#`Toc.svelte`#Note|Note]]
-	1. [[#Sveltedocsmaker Components#`sectionMenu.svelte`|`sectionMenu.svelte`]]
-	1. [[#Sveltedocsmaker Components#`Navbar.svelte`|`Navbar.svelte`]]
-1. [[#Utils|Utils]]
-	1. [[#Utils#`readMd(section: string, category: string)`|`readMd(section: string, category: string)`]]
-	1. [[#Utils#`generateTableOfContents(mdText: string)`|`generateTableOfContents(mdText: string)`]]
-	1. [[#Utils#`findSectionNeighbors(sectionsMap: Map<string, string[]>, sectionName: string)`|`findSectionNeighbors(sectionsMap: Map<string, string[]>, sectionName: string)`]]
-	1. [[#Utils#`scrollToHeader(headerId: string, offset: number)`|`scrollToHeader(headerId: string, offset: number)`]]
-	1. [[#Utils#`headerOnView(callback: (headerText: string) => void, topSection|`headerOnView(callback: (headerText: string) => void, topSection]]
-	1. [[#Utils#`closeSectionMenu(callback: () => void)`|`closeSectionMenu(callback: () => void)`]]
-	1. [[#Utils#`getColorLevels(color: string): [string, string, string]`|`getColorLevels(color: string): [string, string, string]`]]
-	1. [[#Utils#`copyToKeyboard(text: string, timeout: number, cb: (state: boolean) => void)`|`copyToKeyboard(text: string, timeout: number, cb: (state: boolean) => void)`]]
-	1. [[#Utils#`removeUrlEncoding(encodedString: string)`|`removeUrlEncoding(encodedString: string)`]]
+- [Sveltedocsmaker](#sveltedocsmaker)
+  * [Overview](#overview)
+  * [Demo](#demo)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [UI Layout](#ui-layout)
+  * [Sveltedocsmaker Components](#sveltedocsmaker-components)
+  * [Utils](#utils)
+  * [Contributing](#contributing)
+  * [License](#license)
 
 ## Overview
 
