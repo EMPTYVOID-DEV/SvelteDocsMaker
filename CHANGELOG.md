@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.2.1
+
+### Patch Changes
+
+- edb14e3: updating the docs
+
 ## 0.2.0
 
 ### Minor Changes
