@@ -11,6 +11,7 @@
   * [Contributing](#contributing)
   * [License](#license)
 
+
 ## Overview
 
 Sveltedocsmaker is a package that simplifies the process of building your documentation route using Svelte components. It provides an opinionated user interface with customizable options for colors, font sizes, font families, layout sizes, and custom components.
@@ -93,37 +94,35 @@ import { error, type Load } from '@sveltejs/kit';
 export const prerender = true;
 
 export const load: Load = async ({ params }) => {
-    const [data, err] = await readMd(params.section, params.category);
+	const [data, err] = await readMd(params.section, params.category);
 
-    if (err) {
-        console.log(err);
-        throw error(404, 'does not exist');
-    }
+	if (err) {
+		console.log(err);
+		throw error(404, 'does not exist');
+	}
 
-    return data;
+	return data;
 };
 ```
 
 #### `+page.svelte`
 
-This file needs to use the `Main` component and send the loaded data as props to that component, along with the current pathname and `sectionMap`, which is a map that mirrors the 'docs' folder.
+This file needs to use the `Main` component and send the loaded data as props to that component along with the current pathname and `sectionMap`, which is a map that mirrors the 'docs' folder.
 
 ```html
 <script lang="ts">
-    import { Main } from 'sveltedocsmaker';
-    import { page } from '$app/stores';
+	import { Main } from 'sveltedocsmaker';
+	import { page } from '$app/stores';
 
-    $: data = $page.data as {
-        md: string;
-        toc: {
-            degree: number;
-            name: string;
-        }[];
-    };
+	$: data = $page.data as {
+		md: string;
+		toc: {
+			degree: number;
+			name: string;
+		}[];
+	};
 
-    const sectionMap = new Map([
-        ['usage', ['sveltekit', 'typescript']]
-    ]);
+	const sectionMap = new Map([['usage', ['sveltekit', 'typescript']]]);
 </script>
 
 <main {sectionsMap} {data} pathname="{$page.url.pathname}" />
@@ -141,9 +140,7 @@ Here is a description of the UI structure:
 
 - May contain a logo, navigation links, theme toggle, and social links.
 
-- Fixed at the top of the viewport (`position: sticky
-
-`) to remain visible as the user scrolls down the page.
+- Fixed at the top of the viewport (`position: sticky`) to remain visible as the user scrolls down the page.
 
 - Occupies the entire width of the screen.
 
@@ -193,7 +190,7 @@ On mobile devices, the display will switch from a grid layout to a flex-column l
 
 ## Sveltedocsmaker Components
 
-**Sveltedocsmaker** has two exported components `homeNav` and `Main`, but others are internal, but you can use custom components.
+**Sveltedocsmaker** has two exported components `homeNav` and `Main`, but others are internal. However, you can use custom components.
 
 ### `Main.svelte`
 
@@ -205,16 +202,18 @@ This prop represents the content of the currently visited section. It includes t
 
 ```ts
 type Data = {
-    md: string;
-    toc: {
-        degree: number;
-        name: string;
-    }[];
+	md: string;
+	toc: {
+		degree: number;
+		name: string;
+	}[];
 };
 
 const data: Data = {
-    md: '# Introduction',
-    toc: [{ degree: 1, name: 'Introduction' }]
+	md: '#
+
+ Introduction',
+	toc: [{ degree: 1, name: 'Introduction' }]
 };
 ```
 
@@ -273,21 +272,21 @@ The main component uses a grid display to organize the UI, and you can adjust th
 
 ```ts
 type Layout = {
-    sectionsNav: string;
-    markdown: string;
-    toc: string;
-    gap: string;
-    paddingLeft: string;
-    paddingRight: string;
+	sectionsNav: string;
+	markdown: string;
+	toc: string;
+	gap: string;
+	paddingLeft: string;
+	paddingRight: string;
 };
 
 const gridColumns: Layout = {
-    sectionsNav: '24%',
-    markdown: '54%',
-    toc: '20%',
-    gap: '10px',
-    paddingLeft: '1%',
-    paddingRight: '0'
+	sectionsNav: '24%',
+	markdown: '54%',
+	toc: '20%',
+	gap: '10px',
+	paddingLeft: '1%',
+	paddingRight: '0'
 };
 ```
 
@@ -297,16 +296,16 @@ These props allow you to customize the navbar without creating your own.
 
 ```ts
 export let navlinks: {
-    label: string;
-    href: string;
+	label: string;
+	href: string;
 }[] = [];
 
 export let navlogo: {
-    darkIcon: string;
-    lightIcon: string;
+	darkIcon: string;
+	lightIcon: string;
 } = {
-    darkIcon: '',
-    lightIcon: ''
+	darkIcon: '',
+	lightIcon: ''
 };
 
 // Whether to include GitHub and Discord links
@@ -327,47 +326,53 @@ This prop allows you to add your custom components to handle Markdown parts like
 
 ```ts
 export let mdHandlers: {
-    image?: ComponentType<SvelteComponent<{ href: string; text: string }>>;
-    link?: ComponentType<SvelteComponent<{ href: string }>>;
-    list?: ComponentType<SvelteComponent<{ ordered: boolean; start: number }>>;
-    blockquote?: ComponentType<SvelteComponent>;
-    code?: ComponentType<SvelteComponent<{ text: string; lang: string }>>;
-    codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
-    heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
+	image?: ComponentType<SvelteComponent<{ href: string; text: string }>>;
+	link?: ComponentType<SvelteComponent<{ href: string }>>;
+	list?: ComponentType<SvelteComponent<{ ordered: boolean; start: number }>>;
+	blockquote?: ComponentType<SvelteComponent>;
+	code?: ComponentType<SvelteComponent<{ text: string; lang: string }>>;
+	codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
+	heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
 } = {};
 ```
 
 ##### `CustomLayout parts`
 
-Each of your custom layout components is wrapped with a div that specifies width, height, position, overflow, and sometimes padding. Your custom components will receive props, and you also have access to certain utility functions.
+Each of your custom layout components is wrapped with a div that specifies width, height, position, overflow, and sometimes padding.
 
 ```ts
-export let CustomToc: null | ComponentType<SvelteComponent<{
-    links: {
-        name: string;
-        degree: number;
-    }[];
-    navBarHeight: number;
-}>> = null;
+export let CustomToc: null | ComponentType<
+	SvelteComponent<{
+		links: {
+			name: string;
+			degree: number;
+		}[];
+		navBarHeight: number;
+	}>
+> = null;
 
-export let CustomSectionsMenu: null | ComponentType<SvelteComponent<{
-    sectionsMap: Map<string, string[]>;
-    pathname: string;
-}>> = null;
+export let CustomSectionsMenu: null | ComponentType<
+	SvelteComponent<{
+		sectionsMap: Map<string, string[]>;
+		pathname: string;
+	}>
+> = null;
 
-export
+export let CustomLocation: null | ComponentType<SvelteComponent<{ pathname: string }>> = null;
 
- let CustomLocation: null | ComponentType<SvelteComponent<{ pathname: string }>> = null;
+export let CustomQuickNav: null | ComponentType<
+	SvelteComponent<{
+		sectionsMap: Map<string, string[]>;
+		pathname: string;
+	}>
+> = null;
 
-export let CustomQuickNav: null | ComponentType<SvelteComponent<{
-    sectionsMap: Map<string, string[]>;
-    pathname: string;
-}>> = null;
-
-export let CustomNavBar: null | ComponentType<SvelteComponent<{
-    sectionMenuAppear: boolean;
-    pathname: string;
-}>> = null;
+export let CustomNavBar: null | ComponentType<
+	SvelteComponent<{
+		sectionMenuAppear: boolean;
+		pathname: string;
+	}>
+> = null;
 ```
 
 ### `Location.svelte`
@@ -394,7 +399,9 @@ export let CustomNavBar: null | ComponentType<SvelteComponent<{
 - **Functionality:**
   - Utilizes the Svelte `onMount` lifecycle function to initialize header tracking when the component is mounted.
   - Monitors scroll events using `headerOnView` function to identify the currently viewed header and updates the `currentHeader` variable accordingly.
-  - Renders a list of table of contents entries based on the provided `links` prop, where each entry includes the header's name and degree (heading level).
+  - Renders a list of table
+
+ of contents entries based on the provided `links` prop, where each entry includes the header's name and degree (heading level).
   - Applies specific CSS classes (`dg1`, `dg2`, `dg3`, `dg4`) that add margin-left based on their heading levels.
   - Facilitates smooth scrolling to the selected header when a user clicks on a table of contents entry using `scrollToHeader` function.
 
@@ -415,7 +422,7 @@ export let CustomNavBar: null | ComponentType<SvelteComponent<{
 
 ### `Navbar.svelte`
 
-This component is obvious; it shows your logo, website links, socials, theme-toggle. We have exported a version that can be used outside the documentation route; here are its props:
+This component is obvious; it shows your logo, website links, socials, theme-toggle. We have exported a version that can be used outside the documentation route here are it props:
 
 ```ts
 export let mobileToggle: boolean = true;
@@ -423,8 +430,8 @@ export let mobileToggle: boolean = true;
 export let pathname: string;
 
 export let links: {
-    label: string;
-    href: string;
+	label: string;
+	href: string;
 }[] = [];
 
 export let doubleTheme: boolean = true;
@@ -434,14 +441,12 @@ export let githubLink: string = '';
 export let discordLink: string = '';
 
 export let logo: {
-    darkIcon: string;
-    lightIcon: string;
+	darkIcon: string;
+	lightIcon: string;
 } = {
+	darkIcon: '',
 
-darkIcon: '',
-
-lightIcon: ''
-
+	lightIcon: ''
 };
 // new UI props
 export let lightPrimary: string = '#3366FF';
@@ -457,7 +462,7 @@ export let bodyFont: string = `Helvetica, sans-serif`;
 export let h4: string = 'clamp(1.125rem, calc(1.15rem + ((1vw - 0.48rem) * 0.3472)), 1.2rem)';
 ```
 
-Basically the same as [[#`Navigation bar settings` (optional)]], but you need to re-specify some of the UI props from the main since they're in a different context now.
+Basically the same as `Navigation bar settings` but you need to re-specify some of the UI props from the main since they're in a different context now.
 
 ## Utils
 
@@ -485,19 +490,21 @@ Given a `sectionsMap` (a map that associates section names with categories) and 
 
 - `next`: An object representing the next section, containing `section` (the section name) and `category` (the associated category).
 
-### `scrollToHeader(headerId: string, offset: number)`
+### `scrollToHeader(headerId: string, topSectionThreshold: number)`
 
-This function scrolls the document to a specific header element based on its `headerId`. It calculates the target position based on the provided `offset` and smoothly scrolls to the header.
+This function scrolls the document to a specific header element based on its `headerId`. It calculates the target position based on the provided `topSectionThreshold` and smoothly scrolls to the header.
 
-### `headerOnView(callback: (headerText: string) => void, topSection
+### `headerOnView(callback: (headerText: string) => void, topSectionThreshold: number)`
 
-Threshold: number)`
+This utility function is used to monitor which header is currently in view while scrolling through the Markdown content. It invokes the provided `callback` function with the text of the header when it enters the viewport.
 
-This utility function is used to monitor which header is currently in view while scrolling through the Markdown content. It invokes the provided `callback` function with the text of the header when it enters the viewport. The `topSectionThreshold` parameter specifies how much of the header should be visible at the top of the viewport to trigger the callback.
+#### Note
+
+The `topSectionThreshold` represent the height of the top sticky section (desk `navbar`, mobile `navbar && mobileToc`) and we want the header to be visible below it.
 
 ### `closeSectionMenu(callback: () => void)`
 
-This function is used to close the section menu when the screen width exceeds a certain threshold (768px). It emits an event that triggers the provided `callback` when the section menu should be hidden.
+This function is used to toggle off the section menu when the screen width exceeds a 768px threshold. It emits an event that triggers the provided `callback` when the section menu should be hidden.
 
 ### `getColorLevels(color: string): [string, string, string]`
 
@@ -520,10 +527,10 @@ This function removes URL encoding from a given encoded string and returns the d
 ## Contributing
 
 Contributions to the sveltedocsmaker are welcome! Feel free to submit pull requests for new features, bug fixes, or improvements. for changes on master branch create a [changeset](https://github.com/changesets/changesets) if you want the the pull request to create new version.
+
 ## License
 
-The Split Stack CLI Tool is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Sveltedocsmaker is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
----
+---.
 
-Happy coding with the Split Stack CLI Tool! If you encounter any issues or have questions, please don't hesitate to reach out to our community for support.

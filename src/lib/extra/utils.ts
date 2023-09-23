@@ -84,7 +84,7 @@ export const getCategory = (sectioName: string, sectionsMap: Map<string, string[
 	return sectionsArray[categoryIndex][0];
 };
 
-export function scrollToHeader(headerId: string, offset: number) {
+export function scrollToHeader(headerId: string, topSectionThreshold: number) {
 	const rawHeaderId = headerId
 		.toLowerCase()
 		.replace(/ /g, '-')
@@ -92,7 +92,7 @@ export function scrollToHeader(headerId: string, offset: number) {
 	const headerTop = document.getElementById(rawHeaderId)!.getBoundingClientRect().top;
 	const docs = document.getElementById('docs')!;
 	docs.scrollTo({
-		top: headerTop + docs.scrollTop - offset,
+		top: headerTop + docs.scrollTop - topSectionThreshold,
 		behavior: 'smooth'
 	});
 }
