@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.2.2
+
+### Patch Changes
+
+- 5091de4: documentation update by fixing some typos, grammer, language.
+
 ## 0.2.1
 
 ### Patch Changes
