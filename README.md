@@ -1,16 +1,15 @@
 # Sveltedocsmaker
 
 - [Sveltedocsmaker](#sveltedocsmaker)
-  * [Overview](#overview)
-  * [Demo](#demo)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [UI Layout](#ui-layout)
-  * [Sveltedocsmaker Components](#sveltedocsmaker-components)
-  * [Utils](#utils)
-  * [Contributing](#contributing)
-  * [License](#license)
-
+  - [Overview](#overview)
+  - [Demo](#demo)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [UI Layout](#ui-layout)
+  - [Sveltedocsmaker Components](#sveltedocsmaker-components)
+  - [Utils](#utils)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Overview
 
@@ -401,9 +400,10 @@ export let CustomNavBar: null | ComponentType<
   - Monitors scroll events using `headerOnView` function to identify the currently viewed header and updates the `currentHeader` variable accordingly.
   - Renders a list of table
 
- of contents entries based on the provided `links` prop, where each entry includes the header's name and degree (heading level).
-  - Applies specific CSS classes (`dg1`, `dg2`, `dg3`, `dg4`) that add margin-left based on their heading levels.
-  - Facilitates smooth scrolling to the selected header when a user clicks on a table of contents entry using `scrollToHeader` function.
+of contents entries based on the provided `links` prop, where each entry includes the header's name and degree (heading level).
+
+- Applies specific CSS classes (`dg1`, `dg2`, `dg3`, `dg4`) that add margin-left based on their heading levels.
+- Facilitates smooth scrolling to the selected header when a user clicks on a table of contents entry using `scrollToHeader` function.
 
 #### Note
 
@@ -533,4 +533,3 @@ Contributions to the sveltedocsmaker are welcome! Feel free to submit pull reque
 Sveltedocsmaker is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---.
-
