@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let pathname: string;
-	import { findSectionNeigbors } from '$lib/extra/utils';
+	import { findSectionNeigbors } from '../../extra/utils';
 	export let sectionsMap: Map<string, string[]>;
 	let neigbors = {
 		previous: {

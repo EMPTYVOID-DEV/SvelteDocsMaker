@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { removeUrlEncoding } from '$lib/extra/utils';
+	import { removeUrlEncoding } from '../../extra/utils';
 
 	export let pathname: string;
 	let location: string[] = [];

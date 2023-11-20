@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { closeSectionMenu, removeUrlEncoding } from '$lib/extra/utils';
+	import { closeSectionMenu, removeUrlEncoding } from '../../extra/utils';
 	import { createEventDispatcher } from 'svelte';
+	import { MobileMenuAppear } from '$lib/extra/themeStore';
 	export let pathname: string;
 	export let sectionsMap: Map<string, string[]>;
-	const toggleDispatcher = createEventDispatcher();
 	$: currentSection = pathname.split('/').at(-1);
 	onMount(() => {
 		closeSectionMenu(() => {
-			toggleDispatcher('hideMobileMenu');
+			MobileMenuAppear.set(false);
 		});
 	});
 </script>
@@ -22,7 +22,7 @@
 					class="section"
 					id={section == removeUrlEncoding(currentSection) ? 'current' : ''}
 					on:click={() => {
-						toggleDispatcher('hideMobileMenu');
+						MobileMenuAppear.set(false);
 					}}
 					href={'/docs/' + category + '/' + section}
 				>

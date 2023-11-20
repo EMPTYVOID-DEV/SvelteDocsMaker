@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.3.0
+
+### Minor Changes
+
+- adding changemode and changeMobileStatus
+
 ## 0.2.2
 
 ### Patch Changes

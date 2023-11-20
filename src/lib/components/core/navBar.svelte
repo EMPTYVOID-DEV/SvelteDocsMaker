@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { theme } from '$lib/extra/themeStore';
-	import { createEventDispatcher } from 'svelte';
-	export let sectionMenuAppear: boolean;
-	export let pathname: string;
+	import { theme, MobileMenuAppear } from '../../extra/themeStore';
+	import { createEventDispatcher, type ComponentType, SvelteComponent } from 'svelte';
 	export let links: {
 		label: string;
 		href: string;
@@ -10,10 +8,8 @@
 	export let doubleMode: boolean;
 	export let githubLink: string;
 	export let discordLink: string;
-	export let logo: {
-		darkIcon: string;
-		lightIcon: string;
-	};
+	export let npmLink: string;
+	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null;
 	const toggleDispatcher = createEventDispatcher();
 </script>
 
@@ -22,22 +18,18 @@
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 
-	<div class="links">
-		{#if logo.lightIcon != '' && logo.darkIcon != ''}
-			<a href="/" id="logo">
-				<img src={$theme ? logo.lightIcon : logo.darkIcon} alt="logo" />
-			</a>
-		{/if}
-		{#each links as link}
-			<a
-				href={link.href}
-				class="link"
-				id={link.href.split('/')[1] == pathname.split('/')[1] ? 'active' : ''}>{link.label}</a
-			>
-		{/each}
-	</div>
+	{#if logo}
+		<div class="logo">
+			<svelte:component this={logo} mode={$theme} />
+		</div>
+	{/if}
 
 	<div class="utility">
+		<div class="links">
+			{#each links as link}
+				<a href={link.href} class="link">{link.label}</a>
+			{/each}
+		</div>
 		{#if githubLink != ''}
 			<a href={githubLink} target="_blank" id="github">
 				<i class="fa-brands fa-github" />
@@ -46,6 +38,11 @@
 		{#if discordLink != ''}
 			<a href={discordLink} target="_blank" id="discord">
 				<i class="fa-brands fa-discord" />
+			</a>
+		{/if}
+		{#if npmLink != ''}
+			<a href={npmLink} target="_blank" id="npm">
+				<i class="fa-brands fa-npm" />
 			</a>
 		{/if}
 		{#if doubleMode}
@@ -74,18 +71,18 @@
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<i
 			class="fa-solid fa-bars toggler"
-			id={sectionMenuAppear ? 'hidden' : ''}
+			id={$MobileMenuAppear ? 'hidden' : ''}
 			on:click={() => {
-				toggleDispatcher('showMobileMenu');
+				MobileMenuAppear.set(true);
 			}}
 		/>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<i
 			class="fa-solid fa-xmark toggler"
-			id={sectionMenuAppear ? '' : 'hidden'}
+			id={$MobileMenuAppear ? '' : 'hidden'}
 			on:click={() => {
-				toggleDispatcher('hideMobileMenu');
+				MobileMenuAppear.set(false);
 			}}
 		/>
 	</div>
@@ -98,34 +95,16 @@
 		display: grid;
 		grid-template-columns: 1fr auto;
 		align-items: center;
-		padding-right: 30px;
+		padding-inline: 15px;
 	}
 
-	.links {
-		display: flex;
-		gap: 10px;
-		align-items: center;
-	}
-	.links > .link {
-		text-transform: capitalize;
-		font-size: var(--h4);
-		font-weight: bold;
-	}
-	#active {
-		color: var(--primary800);
-	}
-	.links > .link:hover {
-		text-decoration: underline;
-	}
-	.links #logo img {
-		cursor: pointer;
-		width: fit-content;
-		max-width: 14rem;
-		object-fit: contain;
-		object-position: center;
-	}
 	i {
 		cursor: pointer;
+	}
+	.logo {
+		width: 100%;
+		height: 100%;
+		overflow-y: hidden;
 	}
 	.utility {
 		display: flex;
@@ -133,12 +112,28 @@
 		gap: 25px;
 		justify-self: flex-end;
 	}
+	.links {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	.links .link {
+		font-weight: bold;
+	}
+	.links .link:hover {
+		color: var(--primary800);
+	}
+
 	#github {
 		font-size: 2.1rem;
 		color: var(--font);
 	}
 	#discord {
 		font-size: 1.8rem;
+		color: var(--font);
+	}
+	#npm {
+		font-size: 2.1rem;
 		color: var(--font);
 	}
 	.toggle {
@@ -171,13 +166,13 @@
 		.utility {
 			gap: 15px;
 		}
-		img {
-			max-width: 10rem;
-		}
 		.toggler {
 			display: inline-block;
 		}
-		.links .link {
+		.links,
+		#github,
+		#npm,
+		#discord {
 			display: none;
 		}
 	}

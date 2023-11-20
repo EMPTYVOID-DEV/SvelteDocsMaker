@@ -29,8 +29,15 @@
 </script>
 
 <KitBook
-	githubLink="https://discord.gg/wM7yTebn"
 	{sectionsMap}
 	{data}
 	pathname={$page.url.pathname}
+	githubLink="links .link "
+	npmLink="links .link "
+	discordLink="v"
+	navlinks={[
+		{ label: 'example', href: 'jjj' },
+		{ label: 'test', href: 'jjj' },
+		{ label: 'home', href: '/' }
+	]}
 />

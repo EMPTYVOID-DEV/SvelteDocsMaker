@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { headerOnView, scrollToHeader } from '$lib/extra/utils';
+	import { headerOnView, scrollToHeader } from '../../extra/utils';
 	export let links: {
 		name: string;
 		degree: number;

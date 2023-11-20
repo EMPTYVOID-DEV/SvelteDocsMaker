@@ -63,7 +63,7 @@ project-root/
 
 #### Remarks
 
-- The naming of files does not matter as long as the operating system is compatible.
+- The naming of files matters there is letters that get emitted by the browser for example **/docs/usage/what-next?** the read function will get **usage** and **what-next**.
 
 - The `readMd` function will look for files at this path: `/static/docs/${category}/${section}.md`. Changing this structure will prevent the function from locating the file.
 
@@ -121,7 +121,7 @@ This file needs to use the `Main` component and send the loaded data as props to
 		}[];
 	};
 
-	const sectionMap = new Map([['usage', ['sveltekit', 'typescript']]]);
+	const sectionsMap = new Map([['usage', ['sveltekit', 'typescript']]]);
 </script>
 
 <main {sectionsMap} {data} pathname="{$page.url.pathname}" />
@@ -299,18 +299,12 @@ export let navlinks: {
 	href: string;
 }[] = [];
 
-export let navlogo: {
-	darkIcon: string;
-	lightIcon: string;
-} = {
-	darkIcon: '',
-	lightIcon: ''
-};
+export let logo:ComponentType<SvelteComponent<{ mode: boolean }>> | null=null
 
-// Whether to include GitHub and Discord links
+// Whether to include GitHub and Discord and Npm links
 export let githubLink = '';
 export let discordLink = '';
-
+export let npmLink = '';
 // Whether to use dark/light mode or just a singular mode
 export let doubleMode = true;
 ```
@@ -418,7 +412,7 @@ of contents entries based on the provided `links` prop, where each entry include
   - Utilizes the `sectionsMap` prop to organize and display categories and sections within the menu.
   - Allows users to navigate to specific sections in the documentation.
   - Highlights the current section based on the `pathname` prop using the `removeUrlEncoding` utility function.
-  - Fires `hideMobileMenu` event when it crosses the >= 768px threshold to toggle off the sectionMenu using `closeSectionMenu` function.
+  - Calls `changeMobileStatus`  when it crosses the >= 768px threshold to toggle off the sectionMenu using `closeSectionMenu` function.
 
 ### `Navbar.svelte`
 
@@ -465,6 +459,14 @@ export let h4: string = 'clamp(1.125rem, calc(1.15rem + ((1vw - 0.48rem) * 0.347
 Basically the same as `Navigation bar settings` but you need to re-specify some of the UI props from the main since they're in a different context now.
 
 ## Utils
+
+### `changeMode(ligthMode: boolean)` 
+
+This function change the theme of the site by passing **true** for light and **false** for dark.
+
+### `changeMobileStatus(appear: boolean)` 
+
+This function show and hide the mobile menu.
 
 ### `readMd(section: string, category: string)`
 

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { MobileMenuAppear, theme } from './themeStore';
 
 type ReadFileError =
 	| {
@@ -18,6 +19,14 @@ type ReadFileError =
 			code: string; // Other error codes
 			message: string;
 	  };
+
+export const changeMode = (ligthMode: boolean) => {
+	theme.set(ligthMode);
+};
+
+export const changeMobileStatus = (appear: boolean) => {
+	MobileMenuAppear.set(appear);
+};
 
 export const readMd = async (
 	section: string,

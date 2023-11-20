@@ -6,10 +6,10 @@
 	import NavBar from './navBar.svelte';
 	import Location from './Location.svelte';
 	import QuickNav from './quickNav.svelte';
-	import { getColorLevels } from '$lib/extra/utils';
+	import { getColorLevels } from '../../extra/utils';
 	import { githubDark, github } from 'svelte-highlight/styles';
 	import { setContext, type ComponentType, SvelteComponent } from 'svelte';
-	import { theme } from '../../extra/themeStore';
+	import { MobileMenuAppear, theme } from '../../extra/themeStore';
 
 	// page content
 	export let data: {
@@ -48,20 +48,15 @@
 	export let CustomQuickNav: null | ComponentType<
 		SvelteComponent<{ sectionsMap: Map<string, string[]>; pathname: string }>
 	> = null;
-	export let CustomNavBar: null | ComponentType<
-		SvelteComponent<{
-			sectionMenuAppear: boolean;
-			pathname: string;
-		}>
-	> = null;
+	export let CustomNavBar: null | ComponentType<SvelteComponent> = null;
 
 	// colors and themes
 	export let lightBgColor: string = '#dfe2ec';
 	export let darkBgColor: string = '#152038';
 	export let lightPrimary: string = '#3366FF';
 	export let darkPrimary: string = '#9f7cdc';
-	export let darkFontColor: string = '#140f0e';
-	export let lightFontColor: string = '#f0e8e8';
+	export let darkFontColor: string = '#f0e8e8';
+	export let lightFontColor: string = '#140f0e';
 	export let navBarHeight: number = 100;
 	export let darkCodeTheme: string = githubDark;
 	export let lightCodeTheme: string = github;
@@ -116,21 +111,15 @@
 		label: string;
 		href: string;
 	}[] = [];
-	export let navlogo: {
-		darkIcon: string;
-		lightIcon: string;
-	} = {
-		darkIcon: '',
-		lightIcon: ''
-	};
+	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null = null;
 	export let githubLink = '';
 	export let discordLink = '';
+	export let npmLink = '';
 	export let doubleMode = true;
 
 	// setting theme as context
 	setContext('lightCodeTheme', lightCodeTheme);
 	setContext('darkCodeTheme', darkCodeTheme);
-	let sectionMenuAppear = false;
 	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
 </script>
 
@@ -141,7 +130,7 @@
 	    --primary400:{primaryColors[1]};
 	    --primary100:{primaryColors[2]};
 	    --bg:{$theme ? lightBgColor : darkBgColor}; 
-		--font:{$theme ? darkFontColor : lightFontColor}; 
+		--font:{$theme ? lightFontColor : darkFontColor}; 
 
 		--h1: {h1};
         --h2: {h2};
@@ -171,40 +160,17 @@
 >
 	<div id="navWrapper" style="height: {navBarHeight}px;">
 		{#if CustomNavBar}
-			<CustomNavBar
-				{pathname}
-				{sectionMenuAppear}
-				on:hideMobileMenu={() => (sectionMenuAppear = false)}
-				on:showMobileMenu={() => (sectionMenuAppear = true)}
-			/>
+			<CustomNavBar />
 		{:else}
-			<NavBar
-				{sectionMenuAppear}
-				{pathname}
-				links={navlinks}
-				logo={navlogo}
-				{githubLink}
-				{discordLink}
-				{doubleMode}
-				on:hideMobileMenu={() => (sectionMenuAppear = false)}
-				on:showMobileMenu={() => (sectionMenuAppear = true)}
-			/>
+			<NavBar links={navlinks} {logo} {githubLink} {npmLink} {discordLink} {doubleMode} />
 		{/if}
 	</div>
-	{#if sectionMenuAppear}
+	{#if $MobileMenuAppear}
 		<div class="mobileSideBar">
 			{#if CustomSectionsMenu}
-				<CustomSectionsMenu
-					{pathname}
-					{sectionsMap}
-					on:hideMobileMenu={() => (sectionMenuAppear = false)}
-				/>
+				<CustomSectionsMenu {pathname} {sectionsMap} />
 			{:else}
-				<SectionsSlider
-					{pathname}
-					{sectionsMap}
-					on:hideMobileMenu={() => (sectionMenuAppear = false)}
-				/>
+				<SectionsSlider {pathname} {sectionsMap} />
 			{/if}
 		</div>
 	{:else}

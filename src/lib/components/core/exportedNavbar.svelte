@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { theme } from '$lib/extra/themeStore';
-	import { getColorLevels } from '$lib/extra/utils';
-	import { createEventDispatcher } from 'svelte';
+	import { MobileMenuAppear, theme } from '../../extra/themeStore';
+	import { getColorLevels } from '../../extra/utils';
 	export let mobileToggle: boolean = true;
 	export let pathname: string;
 	export let links: {
@@ -25,7 +24,6 @@
 	export let bodyFont: string = `Helvetica, sans-serif`;
 	export let h4: string = 'clamp(1.125rem, calc(1.15rem + ((1vw - 0.48rem) * 0.3472)), 1.2rem)';
 	let toggleOn = false;
-	const toggleDispatcher = createEventDispatcher();
 	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
 </script>
 
@@ -99,7 +97,7 @@
 				id={toggleOn ? 'hidden' : ''}
 				on:click={() => {
 					toggleOn = true;
-					toggleDispatcher('showMobileMenu');
+					MobileMenuAppear.set(true);
 				}}
 			/>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -109,7 +107,7 @@
 				id={toggleOn ? '' : 'hidden'}
 				on:click={() => {
 					toggleOn = false;
-					toggleDispatcher('hideMobileMenu');
+					MobileMenuAppear.set(false);
 				}}
 			/>
 		{/if}
