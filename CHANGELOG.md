@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.3.1
+
+### Patch Changes
+
+- 5778f0c: removing default color from code block
+
 ## 0.3.0
 
 ### Minor Changes
