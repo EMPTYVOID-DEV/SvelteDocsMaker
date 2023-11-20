@@ -269,11 +269,12 @@
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		line-height: var(--lhbody);
-		color: var(--font);
 		font-weight: 400;
 		white-space: normal;
 	}
-
+	:global(p, span, a, li) {
+		color: var(--font);
+	}
 	:global(a) {
 		color: inherit;
 		text-decoration: none;
