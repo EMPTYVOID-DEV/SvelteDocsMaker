@@ -273,21 +273,18 @@
 	:global(p),
 	:global(a),
 	:global(span),
-	:global(li) {
-		font-family: var(--bodyFont);
-		font-size: var(--body);
-		line-height: var(--lhbody);
-		font-weight: 400;
-		white-space: normal;
-		color: var(--font);
-	}
-
+	:global(li),
 	:global(code) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		line-height: var(--lhbody);
 		font-weight: 400;
-		white-space: normal;
+		white-space: pre-wrap;
+		color: var(--font);
+	}
+
+	:global(table *) {
+		color: unset;
 	}
 	:global(a) {
 		text-decoration: none;

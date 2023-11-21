@@ -52,9 +52,7 @@
 		border-bottom-right-radius: 5px;
 		color: initial;
 	}
-	#codeMdBlock :global(> :not(#lang) code) {
-		word-spacing: 1rem;
-	}
+
 	#codeMdBlock #lang {
 		width: 100%;
 		border-top-left-radius: 5px;
