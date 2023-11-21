@@ -299,7 +299,7 @@ export let navlinks: {
 	href: string;
 }[] = [];
 
-export let logo:ComponentType<SvelteComponent<{ mode: boolean }>> | null=null
+export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null = null;
 
 // Whether to include GitHub and Discord and Npm links
 export let githubLink = '';
@@ -326,6 +326,7 @@ export let mdHandlers: {
 	code?: ComponentType<SvelteComponent<{ text: string; lang: string }>>;
 	codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
 	heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
+	table?: ComponentType<SvelteComponent>;
 } = {};
 ```
 
@@ -412,7 +413,7 @@ of contents entries based on the provided `links` prop, where each entry include
   - Utilizes the `sectionsMap` prop to organize and display categories and sections within the menu.
   - Allows users to navigate to specific sections in the documentation.
   - Highlights the current section based on the `pathname` prop using the `removeUrlEncoding` utility function.
-  - Calls `changeMobileStatus`  when it crosses the >= 768px threshold to toggle off the sectionMenu using `closeSectionMenu` function.
+  - Calls `changeMobileStatus` when it crosses the >= 768px threshold to toggle off the sectionMenu using `closeSectionMenu` function.
 
 ### `Navbar.svelte`
 
@@ -460,11 +461,11 @@ Basically the same as `Navigation bar settings` but you need to re-specify some 
 
 ## Utils
 
-### `changeMode(ligthMode: boolean)` 
+### `changeMode(ligthMode: boolean)`
 
 This function change the theme of the site by passing **true** for light and **false** for dark.
 
-### `changeMobileStatus(appear: boolean)` 
+### `changeMobileStatus(appear: boolean)`
 
 This function show and hide the mobile menu.
 
