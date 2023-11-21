@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.4.1
+
+### Patch Changes
+
+- ed87ce6: fixing code block colors and white-space interperation
+
 ## 0.4.0
 
 ### Minor Changes
