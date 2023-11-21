@@ -31,6 +31,7 @@
 <KitBook
 	{sectionsMap}
 	{data}
+	navBarHeight={80}
 	pathname={$page.url.pathname}
 	githubLink="links .link "
 	npmLink="links .link "

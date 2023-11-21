@@ -33,4 +33,11 @@
 		font-weight: bold;
 		background-color: var(--primary800);
 	}
+	@media screen and (width < 768px) {
+		table :global(th),
+		table :global(td) {
+			padding-left: 4px;
+			padding-block: 2px;
+		}
+	}
 </style>

@@ -100,6 +100,7 @@
 
 	i {
 		cursor: pointer;
+		color: var(--font);
 	}
 	.logo {
 		width: 100%;
