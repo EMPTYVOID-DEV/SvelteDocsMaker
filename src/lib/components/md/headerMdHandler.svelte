@@ -1,6 +1,6 @@
-<script>
-	export let depth;
-	export let raw;
+<script lang="ts">
+	export let depth: number;
+	export let raw: string;
 	export let text;
 	let id = text
 		.toLowerCase()

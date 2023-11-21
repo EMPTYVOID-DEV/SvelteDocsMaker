@@ -1,5 +1,15 @@
 # sveltedocsmaker
 
+## 0.4.0
+
+### Minor Changes
+
+- removing code global color and adding table handler
+
+### Patch Changes
+
+- removing global color from code and adding table handler
+
 ## 0.3.0
 
 ### Minor Changes

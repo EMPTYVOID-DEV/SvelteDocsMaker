@@ -119,6 +119,10 @@
 	}
 	.links .link {
 		font-weight: bold;
+		height: 2rem;
+	}
+	.link:hover {
+		border-bottom: 3px solid var(--primary800);
 	}
 	.links .link:hover {
 		color: var(--primary800);

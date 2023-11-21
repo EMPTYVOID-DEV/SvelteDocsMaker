@@ -31,6 +31,7 @@
 		code?: ComponentType<SvelteComponent<{ text: string; lang: string }>>;
 		codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
 		heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
+		table?: ComponentType<SvelteComponent>;
 	} = {};
 	export let CustomToc: null | ComponentType<
 		SvelteComponent<{
@@ -235,9 +236,13 @@
 		box-sizing: border-box;
 	}
 
-	:global(h1, h2, h3, h4) {
+	:global(h1),
+	:global(h2),
+	:global(h3),
+	:global(h4) {
 		font-family: var(--headingFont);
 		font-weight: bold;
+		color: var(--font);
 	}
 
 	:global(h1) {
@@ -265,18 +270,26 @@
 		margin-bottom: var(--Mbh4);
 	}
 
-	:global(p, span, a, li, code) {
+	:global(p),
+	:global(a),
+	:global(span),
+	:global(li) {
+		font-family: var(--bodyFont);
+		font-size: var(--body);
+		line-height: var(--lhbody);
+		font-weight: 400;
+		white-space: normal;
+		color: var(--font);
+	}
+
+	:global(code) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		line-height: var(--lhbody);
 		font-weight: 400;
 		white-space: normal;
 	}
-	:global(p, span, a, li) {
-		color: var(--font);
-	}
 	:global(a) {
-		color: inherit;
 		text-decoration: none;
 		font-weight: bold;
 	}
@@ -287,7 +300,6 @@
 		overflow-y: scroll;
 		overflow-x: hidden;
 		scroll-behavior: smooth;
-		color: var(--font);
 		background-color: var(--bg);
 	}
 	#main {

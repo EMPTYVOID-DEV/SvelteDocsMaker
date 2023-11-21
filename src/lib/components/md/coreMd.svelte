@@ -8,6 +8,7 @@
 	import CodeSpanMdHandler from './codeSpanMdHandler.svelte';
 	import HeaderMdHandler from './headerMdHandler.svelte';
 	import type { ComponentType, SvelteComponent } from 'svelte';
+	import TableMdHandler from './tableMdHandler.svelte';
 	export let source: string;
 	export let mdHandlers: {
 		image?: ComponentType<SvelteComponent<{ href: string; text: string }>>;
@@ -17,12 +18,14 @@
 		code?: ComponentType<SvelteComponent<{ text: string; lang: string }>>;
 		codespan?: ComponentType<SvelteComponent<{ raw: string }>>;
 		heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
+		table?: ComponentType<SvelteComponent>;
 	};
 </script>
 
 <SvelteMarkdown
 	{source}
 	renderers={{
+		table: mdHandlers.table || TableMdHandler,
 		image: mdHandlers.image || ImageHandler,
 		link: mdHandlers.link || LinkMdHandler,
 		list: mdHandlers.list || ListMdHandler,

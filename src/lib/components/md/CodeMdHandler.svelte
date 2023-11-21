@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { LineNumbers, HighlightAuto } from 'svelte-highlight';
 	import { theme } from '../../extra/themeStore';
-	import { copyToKeyboard } from '$lib/extra/utils';
+	import { copyToKeyboard } from '../../extra/utils';
 	export let lang: string;
 	export let text: string;
 	const lightTheme = getContext('lightCodeTheme');
@@ -29,9 +29,9 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		{#if !copyStatement}
-			<i class="fa-solid fa-copy" on:click={copyCode}></i>
+			<i class="fa-solid fa-copy" on:click={copyCode} />
 		{:else}
-			<i class="fa-solid fa-check-double"></i>
+			<i class="fa-solid fa-check-double" />
 		{/if}
 	</div>
 	<HighlightAuto code={text} let:highlighted>
@@ -45,12 +45,14 @@
 		display: flex;
 		flex-direction: column;
 	}
-	:global(#codeMdBlock > :not(#lang)) {
+
+	#codeMdBlock :global(> :not(#lang)) {
 		width: 100%;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
+		color: initial;
 	}
-	:global(#codeMdBlock > :not(#lang) code) {
+	#codeMdBlock :global(> :not(#lang) code) {
 		word-spacing: 1rem;
 	}
 	#codeMdBlock #lang {
