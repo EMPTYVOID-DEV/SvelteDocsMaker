@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { theme, MobileMenuAppear } from '../../extra/themeStore';
-	import { createEventDispatcher, type ComponentType, SvelteComponent } from 'svelte';
+	import type { ComponentType, SvelteComponent } from 'svelte';
 	export let links: {
 		label: string;
 		href: string;
@@ -10,14 +10,9 @@
 	export let discordLink: string;
 	export let npmLink: string;
 	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null;
-	const toggleDispatcher = createEventDispatcher();
 </script>
 
 <nav id="navBar">
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-
 	{#if logo}
 		<div class="logo">
 			<svelte:component this={logo} mode={$theme} />

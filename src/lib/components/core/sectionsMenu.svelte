@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { closeSectionMenu, removeUrlEncoding } from '../../extra/utils';
-	import { createEventDispatcher } from 'svelte';
 	import { MobileMenuAppear } from '$lib/extra/themeStore';
 	export let pathname: string;
 	export let sectionsMap: Map<string, string[]>;

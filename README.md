@@ -189,8 +189,6 @@ On mobile devices, the display will switch from a grid layout to a flex-column l
 
 ## Sveltedocsmaker Components
 
-**Sveltedocsmaker** has two exported components `homeNav` and `Main`, but others are internal. However, you can use custom components.
-
 ### `Main.svelte`
 
 This is the core component of the package, providing several props to customize its functionality. Let's take a look at them:
@@ -417,47 +415,13 @@ of contents entries based on the provided `links` prop, where each entry include
 
 ### `Navbar.svelte`
 
-This component is obvious; it shows your logo, website links, socials, theme-toggle. We have exported a version that can be used outside the documentation route here are it props:
-
-```ts
-export let mobileToggle: boolean = true;
-
-export let pathname: string;
-
-export let links: {
-	label: string;
-	href: string;
-}[] = [];
-
-export let doubleTheme: boolean = true;
-
-export let githubLink: string = '';
-
-export let discordLink: string = '';
-
-export let logo: {
-	darkIcon: string;
-	lightIcon: string;
-} = {
-	darkIcon: '',
-
-	lightIcon: ''
-};
-// new UI props
-export let lightPrimary: string = '#3366FF';
-
-export let darkPrimary: string = '#9f7cdc';
-
-export let darkFontColor: string = '#140f0e';
-
-export let lightFontColor: string = '#f0e8e8';
-
-export let bodyFont: string = `Helvetica, sans-serif`;
-
-export let h4: string = 'clamp(1.125rem, calc(1.15rem + ((1vw - 0.48rem) * 0.3472)), 1.2rem)';
-```
-
-Basically the same as `Navigation bar settings` but you need to re-specify some of the UI props from the main since they're in a different context now.
+- **Purpose:** This shows your logo , internal links ,external links like github and the theme  
+   toggler.
+- **Functionality:**.
+  - Calls `changeMobileStatus`to toggle off the sectionMenu in mobile when clicking to hamburger
+    menu.
+  - In desk it shows the logo , internal links, external links and the theme toggler.
+  - In mobile the internal and external links will be omited duo to lack of space.
 
 ## Utils
 
