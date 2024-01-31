@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.5.1
+
+### Patch Changes
+
+- 53a33be: fixing the global styles infection
+
 ## 0.5.0
 
 ### Minor Changes
