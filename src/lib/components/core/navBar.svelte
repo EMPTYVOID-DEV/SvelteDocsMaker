@@ -9,7 +9,7 @@
 	export let githubLink: string;
 	export let discordLink: string;
 	export let npmLink: string;
-	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null;
+	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>>;
 </script>
 
 <nav id="navBar">

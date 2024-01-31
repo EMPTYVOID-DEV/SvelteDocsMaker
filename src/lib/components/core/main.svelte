@@ -112,7 +112,7 @@
 		label: string;
 		href: string;
 	}[] = [];
-	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null = null;
+	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>>;
 	export let githubLink = '';
 	export let discordLink = '';
 	export let npmLink = '';
@@ -125,7 +125,7 @@
 </script>
 
 <div
-	id="docs"
+	class="docs"
 	style="
 	    --primary800:{primaryColors[0]};
 	    --primary400:{primaryColors[1]};
@@ -218,63 +218,63 @@
 </div>
 
 <style>
-	:global(::-webkit-scrollbar) {
+	.docs :global(::-webkit-scrollbar) {
 		width: 0.5rem;
 	}
-	:global(::-webkit-scrollbar-track) {
+	.docs :global(::-webkit-scrollbar-track) {
 		border-radius: 12px;
 		background: var(--primary100);
 	}
-	:global(::-webkit-scrollbar-thumb) {
+	.docs :global(::-webkit-scrollbar-thumb) {
 		border-radius: 12px;
 		background: var(--primary800);
 	}
 
-	:global(*) {
+	.docs :global(*) {
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
 	}
 
-	:global(h1),
-	:global(h2),
-	:global(h3),
-	:global(h4) {
+	.docs :global(h1),
+	.docs :global(h2),
+	.docs :global(h3),
+	.docs :global(h4) {
 		font-family: var(--headingFont);
 		font-weight: bold;
 		color: var(--font);
 	}
 
-	:global(h1) {
+	.docs :global(h1) {
 		font-size: var(--h1);
 		line-height: var(--lh1);
 		margin-top: var(--Mth1);
 		margin-bottom: var(--Mbh1);
 	}
-	:global(h2) {
+	.docs :global(h2) {
 		font-size: var(--h2);
 		line-height: var(--lh2);
 		margin-top: var(--Mth2);
 		margin-bottom: var(--Mbh2);
 	}
-	:global(h3) {
+	.docs :global(h3) {
 		font-size: var(--h3);
 		line-height: var(--lh3);
 		margin-top: var(--Mth3);
 		margin-bottom: var(--Mbh3);
 	}
-	:global(h4) {
+	.docs :global(h4) {
 		font-size: var(--h4);
 		line-height: var(--lh4);
 		margin-top: var(--Mth4);
 		margin-bottom: var(--Mbh4);
 	}
 
-	:global(p),
-	:global(a),
-	:global(span),
-	:global(li),
-	:global(code) {
+	.docs :global(p),
+	.docs :global(a),
+	.docs :global(span),
+	.docs :global(li),
+	.docs :global(code) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		line-height: var(--lhbody);
@@ -283,15 +283,15 @@
 		color: var(--font);
 	}
 
-	:global(table *) {
+	.docs :global(table *) {
 		color: unset;
 	}
-	:global(a) {
+	.docs :global(a) {
 		text-decoration: none;
 		font-weight: bold;
 	}
 
-	#docs {
+	.docs {
 		width: 100vw;
 		height: 100vh;
 		overflow-y: scroll;
