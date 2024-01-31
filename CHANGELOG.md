@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.5.0
+
+### Minor Changes
+
+- 30d4fa5: removing exported navbar duo to inconvience
+
 ## 0.4.2
 
 ### Patch Changes
