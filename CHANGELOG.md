@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.5.2
+
+### Patch Changes
+
+- ccd9319: fixing ui issues in main and navbar
+
 ## 0.5.1
 
 ### Patch Changes
