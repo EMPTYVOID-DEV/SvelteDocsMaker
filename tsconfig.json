@@ -11,7 +11,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "Node",
-		"lib": ["es2020"],
+		"lib": ["es2020", "DOM"],
 		"target": "es2019"
 	}
 }

@@ -8,10 +8,9 @@
 		width: 95%;
 	}
 
-	table :global(th),
-	table :global(td) {
+	table :global(:is(td, th)) {
 		border: none;
-		color: var(--font);
+		color: var(--font) !important;
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		font-weight: 400;

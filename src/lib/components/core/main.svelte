@@ -1,15 +1,14 @@
 <script lang="ts">
 	import CoreMd from '../md/coreMd.svelte';
 	import Toc from './toc.svelte';
-	import SectionsSlider from './sectionsMenu.svelte';
 	import MobileToc from './mobileToc.svelte';
 	import NavBar from './navBar.svelte';
 	import Location from './Location.svelte';
 	import QuickNav from './quickNav.svelte';
 	import { getColorLevels } from '../../extra/utils';
-	import { githubDark, github } from 'svelte-highlight/styles';
 	import { setContext, type ComponentType, SvelteComponent } from 'svelte';
 	import { MobileMenuAppear, theme } from '../../extra/themeStore';
+	import SectionsMenu from './sectionsMenu.svelte';
 
 	// page content
 	export let data: {
@@ -33,7 +32,7 @@
 		heading?: ComponentType<SvelteComponent<{ text: string; depth: number }>>;
 		table?: ComponentType<SvelteComponent>;
 	} = {};
-	export let CustomToc: null | ComponentType<
+	export let CustomToc: ComponentType<
 		SvelteComponent<{
 			links: {
 				name: string;
@@ -41,15 +40,15 @@
 			}[];
 			navBarHeight: number;
 		}>
-	> = null;
-	export let CustomSectionsMenu: null | ComponentType<
+	> = Toc;
+	export let CustomSectionsMenu: ComponentType<
 		SvelteComponent<{ sectionsMap: Map<string, string[]>; pathname: string }>
-	> = null;
-	export let CustomLocation: null | ComponentType<SvelteComponent<{ pathname: string }>> = null;
-	export let CustomQuickNav: null | ComponentType<
+	> = SectionsMenu;
+	export let CustomLocation: ComponentType<SvelteComponent<{ pathname: string }>> = Location;
+	export let CustomQuickNav: ComponentType<
 		SvelteComponent<{ sectionsMap: Map<string, string[]>; pathname: string }>
-	> = null;
-	export let CustomNavBar: null | ComponentType<SvelteComponent> = null;
+	> = QuickNav;
+	export let CustomNavBar: ComponentType<SvelteComponent> = NavBar;
 
 	// colors and themes
 	export let lightBgColor: string = '#dfe2ec';
@@ -59,8 +58,6 @@
 	export let darkFontColor: string = '#f0e8e8';
 	export let lightFontColor: string = '#140f0e';
 	export let navBarHeight: number = 100;
-	export let darkCodeTheme: string = githubDark;
-	export let lightCodeTheme: string = github;
 
 	// Typography props
 	export let h1: string = 'clamp(1.8rem, calc(1.8rem + ((1vw - 0.48rem) * 0.9722)), 2.1rem)';
@@ -112,186 +109,155 @@
 		label: string;
 		href: string;
 	}[] = [];
-	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>>;
+	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>> | null = null;
 	export let githubLink = '';
 	export let discordLink = '';
 	export let npmLink = '';
 	export let doubleMode = true;
 
-	// setting theme as context
-	setContext('lightCodeTheme', lightCodeTheme);
-	setContext('darkCodeTheme', darkCodeTheme);
+	setContext('navBarOptions', {
+		navlinks,
+		logo,
+		githubLink,
+		discordLink,
+		npmLink,
+		doubleMode
+	});
+
 	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
 </script>
 
 <div
-	class="docs"
-	style="
-	    --primary800:{primaryColors[0]};
-	    --primary400:{primaryColors[1]};
-	    --primary100:{primaryColors[2]};
-	    --bg:{$theme ? lightBgColor : darkBgColor}; 
-		--font:{$theme ? lightFontColor : darkFontColor}; 
-
-		--h1: {h1};
-        --h2: {h2};
-        --h3: {h3};
-        --h4: {h4};
-        --body: {body};
-
-        --Mth1: {Mth1};
-        --Mbh1: {Mbh1};
-        --Mth2: {Mth2};
-        --Mbh2: {Mbh2};
-        --Mth3: {Mth3};
-        --Mbh3: {Mbh3};
-        --Mth4: {Mth4};
-        --Mbh4: {Mbh4};
-
-        --lh1: {lh1};
-        --lh2: {lh2};
-        --lh3: {lh3};
-        --lh4: {lh4};
-        --lhbody: {lhbody};
-
-		--headingFont:{headingFont} ;
-		--bodyFont:{bodyFont};
-
-	"
+	id="docs"
+	class="docsEntry"
+	style:--primary800={primaryColors[0]}
+	style:--primary400={primaryColors[1]}
+	style:--primary100={primaryColors[2]}
+	style:--bg={$theme ? lightBgColor : darkBgColor}
+	style:--font={$theme ? lightFontColor : darkFontColor}
+	style:--h1={h1}
+	style:--h2={h2}
+	style:--h3={h3}
+	style:--h4={h4}
+	style:--body={body}
+	style:--Mth1={Mth1}
+	style:--Mbh1={Mbh1}
+	style:--Mth2={Mth2}
+	style:--Mbh2={Mbh2}
+	style:--Mth3={Mth3}
+	style:--Mbh3={Mbh3}
+	style:--Mth4={Mth4}
+	style:--Mbh4={Mbh4}
+	style:--lh1={lh1}
+	style:--lh2={lh2}
+	style:--lh3={lh3}
+	style:--lh4={lh4}
+	style:--lhbody={lhbody}
+	style:--headingFont={headingFont}
+	style:--bodyFont={bodyFont}
 >
-	<div id="navWrapper" style="height: {navBarHeight}px;">
-		{#if CustomNavBar}
-			<CustomNavBar />
-		{:else}
-			<NavBar links={navlinks} {logo} {githubLink} {npmLink} {discordLink} {doubleMode} />
-		{/if}
+	<div class="navWrapper" style="height: {navBarHeight}px;">
+		<svelte:component this={CustomNavBar} />
 	</div>
 	{#if $MobileMenuAppear}
 		<div class="mobileSideBar">
-			{#if CustomSectionsMenu}
-				<CustomSectionsMenu {pathname} {sectionsMap} />
-			{:else}
-				<SectionsSlider {pathname} {sectionsMap} />
-			{/if}
+			<svelte:component this={CustomSectionsMenu} {pathname} {sectionsMap} />
 		</div>
 	{:else}
 		<div
-			id="main"
+			class="main"
 			style="grid-template-columns:{gridColumns.sectionsNav} {gridColumns.markdown} {gridColumns.toc}; gap:{gridColumns.gap};padding-left:{gridColumns.paddingLeft};padding-right:{gridColumns.paddingRight};"
 		>
 			<div class="sideWrapper" style="top: {navBarHeight}px;">
-				<div id="sidebar" style="max-height: calc(95vh - {navBarHeight}px);">
-					{#if CustomSectionsMenu}
-						<CustomSectionsMenu {sectionsMap} {pathname} />
-					{:else}
-						<SectionsSlider {sectionsMap} {pathname} />
-					{/if}
+				<div class="sidebar" style="max-height: calc(95vh - {navBarHeight}px);">
+					<svelte:component this={CustomSectionsMenu} {sectionsMap} {pathname} />
 				</div>
 			</div>
-			<div id="markdown">
-				{#if CustomLocation}
-					<CustomLocation {pathname} />
-				{:else}
-					<Location {pathname} />
-				{/if}
+			<div class="markdown">
+				<svelte:component this={CustomLocation} {pathname} />
+
 				{#key data}
 					<CoreMd source={data.md} {mdHandlers} />
 				{/key}
-				{#if CustomQuickNav}
-					<CustomQuickNav {pathname} {sectionsMap} />
-				{:else}
-					<QuickNav {pathname} {sectionsMap} />
-				{/if}
+				<svelte:component this={CustomQuickNav} {pathname} {sectionsMap} />
 			</div>
-			<div id="mobileToc" style="top: {navBarHeight}px;">
+			<div class="mobileToc" style="top: {navBarHeight}px;">
 				<MobileToc links={data.toc} {navBarHeight} />
 			</div>
-			<div id="toc" style="top: {navBarHeight}px;">
-				{#if CustomToc}
-					<CustomToc links={data.toc} {navBarHeight} />
-				{:else}
-					<Toc links={data.toc} {navBarHeight} />
-				{/if}
+			<div class="toc" style="top: {navBarHeight}px;">
+				<svelte:component this={CustomToc} links={data.toc} {navBarHeight} />
 			</div>
 		</div>
 	{/if}
 </div>
 
 <style>
-	.docs :global(::-webkit-scrollbar) {
+	:global(::-webkit-scrollbar) {
 		width: 0.5rem;
 	}
-	.docs :global(::-webkit-scrollbar-track) {
+	:global(::-webkit-scrollbar-track) {
 		border-radius: 12px;
 		background: var(--primary100);
 	}
-	.docs :global(::-webkit-scrollbar-thumb) {
+	:global(::-webkit-scrollbar-thumb) {
 		border-radius: 12px;
 		background: var(--primary800);
 	}
 
-	.docs :global(*) {
+	:global(*) {
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
 	}
-
-	.docs :global(h1),
-	.docs :global(h2),
-	.docs :global(h3),
-	.docs :global(h4) {
+	.docsEntry :global(:where(h1, h2, h3, h4)) {
 		font-family: var(--headingFont);
 		font-weight: bold;
 		color: var(--font);
 	}
 
-	.docs :global(h1) {
+	.docsEntry :global(h1) {
 		font-size: var(--h1);
 		line-height: var(--lh1);
 		margin-top: var(--Mth1);
 		margin-bottom: var(--Mbh1);
 	}
-	.docs :global(h2) {
+	.docsEntry :global(h2) {
 		font-size: var(--h2);
 		line-height: var(--lh2);
 		margin-top: var(--Mth2);
 		margin-bottom: var(--Mbh2);
 	}
-	.docs :global(h3) {
+	.docsEntry :global(h3) {
 		font-size: var(--h3);
 		line-height: var(--lh3);
 		margin-top: var(--Mth3);
 		margin-bottom: var(--Mbh3);
 	}
-	.docs :global(h4) {
+	.docsEntry :global(h4) {
 		font-size: var(--h4);
 		line-height: var(--lh4);
 		margin-top: var(--Mth4);
 		margin-bottom: var(--Mbh4);
 	}
 
-	.docs :global(p),
-	.docs :global(a),
-	.docs :global(span),
-	.docs :global(li),
-	.docs :global(code) {
+	.docsEntry :global(:where(p, span, a, li, code)) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
-		line-height: var(--lhbody);
 		font-weight: 400;
-		white-space: pre-wrap;
+		line-height: var(--lhbody);
 		color: var(--font);
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 
-	.docs :global(table *) {
+	.docsEntry :global(table *) {
 		color: unset;
 	}
-	.docs :global(a) {
+	.docsEntry :global(a) {
 		text-decoration: none;
-		font-weight: bold;
 	}
 
-	.docs {
+	#docs {
 		width: 100vw;
 		height: 100vh;
 		overflow-y: scroll;
@@ -299,12 +265,12 @@
 		scroll-behavior: smooth;
 		background-color: var(--bg);
 	}
-	#main {
+	.main {
 		width: 100%;
 		display: grid;
 		align-items: start;
 	}
-	#navWrapper {
+	.navWrapper {
 		width: 100%;
 		background-color: var(--bg);
 		position: sticky;
@@ -312,7 +278,7 @@
 		overflow: hidden;
 		z-index: 3;
 	}
-	#markdown {
+	.markdown {
 		display: flex;
 		flex-direction: column;
 		width: 95%;
@@ -329,43 +295,43 @@
 	.sideWrapper {
 		position: sticky;
 	}
-	#sidebar {
+	.sidebar {
 		width: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
 	}
-	#mobileToc {
+	.mobileToc {
 		display: none;
 		position: sticky;
 		width: 100%;
 		flex-direction: column;
 		overflow-x: hidden;
 	}
-	#toc {
+	.toc {
 		position: sticky;
 		width: 100%;
 		overflow-x: hidden;
 		padding-bottom: 20px;
 	}
 	@media screen and (width < 768px) {
-		#main {
+		.main {
 			display: flex;
 			flex-direction: column;
 			padding-inline: 10px;
 		}
-		#sidebar {
+		.sidebar {
 			display: none;
 		}
-		#toc {
+		.toc {
 			display: none;
 		}
-		#mobileToc {
+		.mobileToc {
 			display: flex;
 			background-color: var(--bg);
 			padding-bottom: 15px;
 			z-index: 4;
 		}
-		#markdown {
+		.markdown {
 			order: 2;
 			width: 100%;
 		}

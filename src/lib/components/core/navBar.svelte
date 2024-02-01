@@ -1,72 +1,64 @@
-<script lang="ts">
+<script>
 	import { theme, MobileMenuAppear } from '../../extra/themeStore';
-	import type { ComponentType, SvelteComponent } from 'svelte';
-	export let links: {
-		label: string;
-		href: string;
-	}[];
-	export let doubleMode: boolean;
-	export let githubLink: string;
-	export let discordLink: string;
-	export let npmLink: string;
-	export let logo: ComponentType<SvelteComponent<{ mode: boolean }>>;
+	import { getContext } from 'svelte';
+	const settings = getContext('navBarOptions');
 </script>
 
-<nav id="navBar">
-	{#if logo}
+<nav class="navBar">
+	{#if settings.logo}
 		<div class="logo">
-			<svelte:component this={logo} mode={$theme} />
+			<svelte:component this={settings.logo} mode={$theme} />
 		</div>
 	{/if}
 
 	<div class="utility">
 		<div class="links">
-			{#each links as link}
+			{#each settings.navlinks as link}
 				<a href={link.href} class="link">{link.label}</a>
 			{/each}
 		</div>
-		{#if githubLink != ''}
-			<a href={githubLink} target="_blank" id="github">
+		{#if settings.githubLink != ''}
+			<a href={settings.githubLink} target="_blank" class="github">
 				<i class="fa-brands fa-github" />
 			</a>
 		{/if}
-		{#if discordLink != ''}
-			<a href={discordLink} target="_blank" id="discord">
+		{#if settings.discordLink != ''}
+			<a href={settings.discordLink} target="_blank" class="discord">
 				<i class="fa-brands fa-discord" />
 			</a>
 		{/if}
-		{#if npmLink != ''}
-			<a href={npmLink} target="_blank" id="npm">
+		{#if settings.npmLink != ''}
+			<a href={settings.npmLink} target="_blank" class="npm">
 				<i class="fa-brands fa-npm" />
 			</a>
 		{/if}
-		{#if doubleMode}
+		{#if settings.doubleMode}
 			<div class="toggle">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<i
 					class="fa-solid fa-sun"
+					class:whiteTheme={$theme}
 					on:click={() => {
 						theme.set(true);
 					}}
-					id={$theme ? 'whiteTheme' : ''}
 				/>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<i
 					class="fa-solid fa-moon"
+					class:darkTheme={$theme}
 					on:click={() => {
 						theme.set(false);
 					}}
-					id={$theme ? '' : 'darkTheme'}
 				/>
 			</div>
 		{/if}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<i
-			class="fa-solid fa-bars toggler"
-			id={$MobileMenuAppear ? 'hidden' : ''}
+			class="fa-solid fa-bars control"
+			class:hidden={$MobileMenuAppear}
 			on:click={() => {
 				MobileMenuAppear.set(true);
 			}}
@@ -74,8 +66,8 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<i
-			class="fa-solid fa-xmark toggler"
-			id={$MobileMenuAppear ? '' : 'hidden'}
+			class="fa-solid fa-xmark control"
+			class:hidden={!$MobileMenuAppear}
 			on:click={() => {
 				MobileMenuAppear.set(false);
 			}}
@@ -124,15 +116,15 @@
 		color: var(--primary800);
 	}
 
-	#github {
+	.github {
 		font-size: 2.1rem;
 		color: var(--font);
 	}
-	#discord {
+	.discord {
 		font-size: 1.8rem;
 		color: var(--font);
 	}
-	#npm {
+	.npm {
 		font-size: 2.1rem;
 		color: var(--font);
 	}
@@ -150,29 +142,29 @@
 		font-size: 1.6rem;
 		color: var(--font);
 	}
-	#whiteTheme,
-	#darkTheme {
+	.whiteTheme,
+	.darkTheme {
 		color: var(--primary800);
 	}
-	.toggler {
+	.control {
 		display: none;
 		font-size: 1.8rem;
 		margin-left: 10px;
 	}
-	#hidden {
-		display: none;
-	}
 	@media screen and (width < 768px) {
+		.control {
+			display: inline-block;
+		}
+		.hidden {
+			display: none;
+		}
 		.utility {
 			gap: 15px;
 		}
-		.toggler {
-			display: inline-block;
-		}
 		.links,
-		#github,
-		#npm,
-		#discord {
+		.github,
+		.npm,
+		.discord {
 			display: none;
 		}
 	}
