@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Main from '$lib/components/core/main.svelte';
+	import Code from '../../../code.svelte';
 
 	$: data = $page.data as {
 		md: string;
@@ -34,6 +35,9 @@
 			href: '/test'
 		}
 	]}
+	mdHandlers={{
+		code: Code
+	}}
 	githubLink="https://github.com/Shinji13/Altron"
 	npmLink="https://www.npmjs.com/package/@altron/altron"
 	navBarHeight={80}

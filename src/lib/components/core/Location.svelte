@@ -39,6 +39,7 @@
 		padding-block: 1px;
 		background-color: var(--primary100);
 		border-radius: 6px;
+		color: var(--font);
 		font-size: var(--small);
 		border: 2px solid var(--primary400);
 	}

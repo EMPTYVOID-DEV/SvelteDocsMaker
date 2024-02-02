@@ -17,7 +17,7 @@
 </script>
 
 <button on:click={() => (appear = !appear)}>
-	<span>On this page</span>
+	<h4>On this page</h4>
 	{#if appear}
 		<i class="fa-solid fa-chevron-down" />
 	{:else}
@@ -54,7 +54,6 @@
 		display: flex;
 		align-items: center;
 		font-weight: bold;
-		color: var(--font);
 		font-size: var(--body);
 		line-height: var(--lhbody);
 		gap: 5px;
@@ -63,10 +62,8 @@
 		font-weight: bold;
 		font-size: small;
 	}
-	button span {
-		font-weight: 600;
-		font-size: var(--h4);
-		line-height: var(--lh4);
+	button h4 {
+		color: var(--font);
 	}
 	.links {
 		background-color: var(--primary100);

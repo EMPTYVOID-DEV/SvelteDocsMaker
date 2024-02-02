@@ -93,6 +93,7 @@
 		}
 	},
 	"dependencies": {
+		"svelte-highlight": "^7.4.8",
 		"svelte-markdown": "^0.4.0"
 	}
 }

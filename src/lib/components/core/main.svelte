@@ -127,9 +127,8 @@
 	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
 </script>
 
-<div
+<main
 	id="docs"
-	class="docsEntry"
 	style:--primary800={primaryColors[0]}
 	style:--primary400={primaryColors[1]}
 	style:--primary100={primaryColors[2]}
@@ -189,7 +188,7 @@
 			</div>
 		</div>
 	{/if}
-</div>
+</main>
 
 <style>
 	:global(::-webkit-scrollbar) {
@@ -209,51 +208,46 @@
 		margin: 0;
 		box-sizing: border-box;
 	}
-	.docsEntry :global(:where(h1, h2, h3, h4)) {
+	main :global(:where(h1, h2, h3, h4)) {
 		font-family: var(--headingFont);
 		font-weight: bold;
-		color: var(--font);
 	}
 
-	.docsEntry :global(h1) {
+	main :global(h1) {
 		font-size: var(--h1);
 		line-height: var(--lh1);
 		margin-top: var(--Mth1);
 		margin-bottom: var(--Mbh1);
 	}
-	.docsEntry :global(h2) {
+	main :global(h2) {
 		font-size: var(--h2);
 		line-height: var(--lh2);
 		margin-top: var(--Mth2);
 		margin-bottom: var(--Mbh2);
 	}
-	.docsEntry :global(h3) {
+	main :global(h3) {
 		font-size: var(--h3);
 		line-height: var(--lh3);
 		margin-top: var(--Mth3);
 		margin-bottom: var(--Mbh3);
 	}
-	.docsEntry :global(h4) {
+	main :global(h4) {
 		font-size: var(--h4);
 		line-height: var(--lh4);
 		margin-top: var(--Mth4);
 		margin-bottom: var(--Mbh4);
 	}
 
-	.docsEntry :global(:where(p, span, a, li, code)) {
+	main :global(:where(p, span, a, li, code)) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		font-weight: 400;
 		line-height: var(--lhbody);
-		color: var(--font);
 		white-space: pre-wrap;
 		word-break: break-word;
 	}
 
-	.docsEntry :global(table *) {
-		color: unset;
-	}
-	.docsEntry :global(a) {
+	main :global(a) {
 		text-decoration: none;
 	}
 

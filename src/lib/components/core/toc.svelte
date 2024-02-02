@@ -41,6 +41,9 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+	.tocContainer h4 {
+		color: var(--font);
+	}
 	.links {
 		display: flex;
 		flex-direction: column;
@@ -53,8 +56,18 @@
 		border-left: 3px solid var(--primary800);
 		filter: contrast(1.5);
 	}
+	.link span {
+		font-weight: 600;
+		text-align: start;
+		color: var(--primary400);
+		display: inline-block;
+	}
+	.link:hover span {
+		text-decoration: underline;
+		color: var(--primary800);
+	}
 	#active {
-		border-left: 3px solid var(--primary800);
+		border-color: var(--primary800);
 		background-color: var(--primary100);
 	}
 	#active span {
@@ -62,16 +75,6 @@
 	}
 	#active:hover span {
 		color: var(--font);
-	}
-	span {
-		font-weight: 600;
-		text-align: start;
-		color: var(--primary400);
-		display: inline-block;
-	}
-	span:hover {
-		text-decoration: underline;
-		color: var(--primary800);
 	}
 	.dg1 {
 		margin-left: 8px;
