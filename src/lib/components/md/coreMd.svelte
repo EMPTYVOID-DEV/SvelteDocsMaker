@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SvelteMarkdown from 'svelte-markdown';
+	import ParagraphHandler from './paragraphHandler.svelte';
 	import ImageHandler from './ImageMdHandler.svelte';
 	import LinkMdHandler from './LinkMdHandler.svelte';
 	import ListMdHandler from './ListMdHandler.svelte';
@@ -11,6 +12,7 @@
 	import TableMdHandler from './tableMdHandler.svelte';
 	export let source: string;
 	export let mdHandlers: {
+		paragraph?: ComponentType<SvelteComponent>;
 		image?: ComponentType<SvelteComponent<{ href: string; text: string }>>;
 		link?: ComponentType<SvelteComponent<{ href: string }>>;
 		list?: ComponentType<SvelteComponent<{ ordered: boolean; start: number }>>;
@@ -25,6 +27,7 @@
 <SvelteMarkdown
 	{source}
 	renderers={{
+		paragraph: mdHandlers.paragraph || ParagraphHandler,
 		table: mdHandlers.table || TableMdHandler,
 		image: mdHandlers.image || ImageHandler,
 		link: mdHandlers.link || LinkMdHandler,

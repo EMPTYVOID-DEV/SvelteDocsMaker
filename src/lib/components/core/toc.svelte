@@ -42,6 +42,7 @@
 		gap: 10px;
 	}
 	.tocContainer h4 {
+		margin: 0;
 		color: var(--font);
 	}
 	.links {

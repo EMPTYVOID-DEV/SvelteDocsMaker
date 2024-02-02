@@ -1,4 +1,5 @@
 <script>
+	//@ts-nocheck
 	export let raw;
 </script>
 
@@ -11,6 +12,7 @@
 		border: 2px solid var(--primary400);
 		background-color: var(--primary100);
 		border-radius: 4px;
+		color: var(--primary800);
 		font-size: inherit;
 		font-weight: inherit;
 		line-height: inherit;

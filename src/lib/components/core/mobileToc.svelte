@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { headerOnView, scrollToHeader } from '../../extra/utils';
+	import Rightarrow from '../icons/rightarrow.svelte';
+	import Downarrow from '../icons/downarrow.svelte';
 	export let links: {
 		name: string;
 		degree: number;
@@ -19,9 +21,9 @@
 <button on:click={() => (appear = !appear)}>
 	<h4>On this page</h4>
 	{#if appear}
-		<i class="fa-solid fa-chevron-down" />
+		<Downarrow />
 	{:else}
-		<i class="fa-solid fa-chevron-right" />
+		<Rightarrow />
 	{/if}
 </button>
 <div class="links" id={appear ? '' : 'hidden'}>
@@ -43,9 +45,8 @@
 <style>
 	button {
 		width: fit-content;
-		outline: none;
 		height: 3rem;
-		display: inline-block;
+		outline: none;
 		background-color: var(--primary100);
 		border: 2px solid var(--primary400);
 		border-radius: 6px;
@@ -58,11 +59,9 @@
 		line-height: var(--lhbody);
 		gap: 5px;
 	}
-	button i {
-		font-weight: bold;
-		font-size: small;
-	}
+
 	button h4 {
+		margin: 0;
 		color: var(--font);
 	}
 	.links {
@@ -84,20 +83,18 @@
 		border: none;
 		filter: contrast(1.4);
 	}
+	.link span {
+		font-weight: bold;
+		color: var(--primary400);
+	}
+
 	#active {
 		background-color: var(--primary400);
 	}
 	#active span {
 		color: var(--font);
 	}
-	.link span {
-		font-weight: bold;
-		color: var(--primary400);
-	}
-	.link span:hover {
-		text-decoration: underline;
-		color: var(--primary800);
-	}
+
 	.dg1 {
 		margin-left: 8px;
 	}

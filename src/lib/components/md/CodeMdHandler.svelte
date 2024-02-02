@@ -1,12 +1,14 @@
-<script lang="ts">
-	import { copyToKeyboard } from '../../extra/utils';
-	export let lang: string;
-	export let text: string;
-	let copyStatement: boolean = false;
-	async function copyCode(e: MouseEvent) {
-		copyToKeyboard(text, 800, (newState) => {
-			copyStatement = newState;
-		});
+<script>
+	//@ts-nocheck
+	import Copy from '../icons/copy.svelte';
+	import Done from '../icons/done.svelte';
+	export let text;
+	export let lang;
+	let copyStatement = false;
+	function copyCode() {
+		navigator.clipboard.writeText(text);
+		copyStatement = true;
+		new Promise((res) => setTimeout(res, 800)).then(() => (copyStatement = false));
 	}
 </script>
 
@@ -16,11 +18,12 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		{#if !copyStatement}
-			<i class="fa-solid fa-copy control" on:click={copyCode} />
+			<span on:click|stopPropagation={copyCode} class="control"><Copy /></span>
 		{:else}
-			<i class="fa-solid fa-check-double" />
+			<span><Done /></span>
 		{/if}
 	</div>
+
 	<code>{text}</code>
 </div>
 
@@ -31,14 +34,14 @@
 		flex-direction: column;
 		gap: 5px;
 		border-radius: 5px;
-		background-color: var(--font);
+		background-color: var(--primary100);
 		padding-bottom: 10px;
 		overflow: hidden;
+		color: var(--font);
 	}
 
 	#codeMdBlock > code {
 		padding-left: 10px;
-		color: var(--bg);
 	}
 
 	#codeMdBlock #lang {

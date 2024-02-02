@@ -1,11 +1,13 @@
 <script>
+	// @ts-nocheck
+	import Link from '../icons/link.svelte';
 	export let href = '';
 	export let title = undefined;
 </script>
 
 <a id="anchor" {href} {title} target="_blank">
 	<span><slot /></span>
-	<i class="fa-solid fa-arrow-up-right-from-square"></i>
+	<span><Link /></span>
 </a>
 
 <style>
@@ -13,6 +15,8 @@
 		cursor: pointer;
 		opacity: 1;
 		margin-inline: 2px;
+		display: inline-flex;
+		align-items: center;
 	}
 	#anchor:hover {
 		opacity: 1;

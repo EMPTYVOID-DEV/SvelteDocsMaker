@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { removeUrlEncoding } from '../../extra/utils';
-
+	import Home from '../icons/home.svelte';
+	import Rightarrow from '../icons/rightarrow.svelte';
 	export let pathname: string;
 	let location: string[] = [];
 	$: {
@@ -10,9 +11,9 @@
 </script>
 
 <div class="location">
-	<i class="fa-solid fa-house" />
+	<Home />
 	{#each location as param}
-		<i class="fa-solid fa-chevron-right" />
+		<Rightarrow />
 		<span>{removeUrlEncoding(param)}</span>
 	{/each}
 </div>
@@ -20,23 +21,13 @@
 <style>
 	.location {
 		display: flex;
-		width: 100%;
-		gap: 5px;
 		align-items: center;
-	}
-	.location i:not(i:first-child) {
-		color: var(--font);
-		font-weight: bold;
-	}
-	.location i:first-child {
-		background-color: var(--font);
-		color: var(--bg);
-		padding: 5px;
-		border-radius: 6px;
+		width: 100%;
+		gap: 2px;
 	}
 	.location span {
 		padding-inline: 3px;
-		padding-block: 1px;
+		padding-block: 3px;
 		background-color: var(--primary100);
 		border-radius: 6px;
 		color: var(--font);

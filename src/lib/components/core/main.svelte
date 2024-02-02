@@ -23,6 +23,7 @@
 
 	// custom components
 	export let mdHandlers: {
+		paragraph?: ComponentType<SvelteComponent>;
 		image?: ComponentType<SvelteComponent<{ href: string; text: string }>>;
 		link?: ComponentType<SvelteComponent<{ href: string }>>;
 		list?: ComponentType<SvelteComponent<{ ordered: boolean; start: number }>>;
@@ -172,7 +173,7 @@
 					<svelte:component this={CustomSectionsMenu} {sectionsMap} {pathname} />
 				</div>
 			</div>
-			<div class="markdown">
+			<div id="markdown">
 				<svelte:component this={CustomLocation} {pathname} />
 
 				{#key data}
@@ -272,7 +273,7 @@
 		overflow: hidden;
 		z-index: 3;
 	}
-	.markdown {
+	#markdown {
 		display: flex;
 		flex-direction: column;
 		width: 95%;
@@ -325,7 +326,7 @@
 			padding-bottom: 15px;
 			z-index: 4;
 		}
-		.markdown {
+		#markdown {
 			order: 2;
 			width: 100%;
 		}

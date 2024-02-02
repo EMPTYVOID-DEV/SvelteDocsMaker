@@ -149,7 +149,7 @@ export function getColorLevels(color: string): [string, string, string] {
 
 	const level800 = `rgb(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]})`;
 	const level400 = `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, 0.53)`;
-	const level100 = `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, 0.14)`;
+	const level100 = `rgba(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}, 0.24)`;
 
 	return [level800, level400, level100];
 }

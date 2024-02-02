@@ -1,6 +1,9 @@
 <script lang="ts">
 	export let pathname: string;
 	import { findSectionNeigbors } from '../../extra/utils';
+	import Rightarrow from '../icons/rightarrow.svelte';
+	import Leftarrow from '../icons/leftarrow.svelte';
+
 	export let sectionsMap: Map<string, string[]>;
 	let neigbors = {
 		previous: {
@@ -22,14 +25,16 @@
 <div class="quickNav">
 	{#if neigbors.previous.section != ''}
 		<a class="previous" href="/docs/{neigbors.previous.category}/{neigbors.previous.section}">
-			<i class="fa-solid fa-chevron-left" />
+			<span class="control"><Leftarrow /></span>
 			<span>{neigbors.previous.section}</span>
 		</a>
 	{/if}
 	{#if neigbors.next.section != ''}
 		<a class="next" href="/docs/{neigbors.next.category}/{neigbors.next.section}">
 			<span>{neigbors.next.section}</span>
-			<i class="fa-solid fa-chevron-right" />
+			<span class="control">
+				<Rightarrow />
+			</span>
 		</a>
 	{/if}
 </div>
@@ -51,7 +56,6 @@
 		width: 100%;
 		display: flex;
 		align-items: center;
-		gap: 8px;
 		color: var(--primary800);
 	}
 	.next {
@@ -63,6 +67,11 @@
 	.next span,
 	.previous span {
 		font-size: var(--h4);
-		font-weight: 500;
+		font-weight: bold;
+	}
+	.control {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

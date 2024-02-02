@@ -1,4 +1,5 @@
 <script lang="ts">
+	//@ts-nocheck
 	import { onMount } from 'svelte';
 	import { closeSectionMenu, removeUrlEncoding } from '../../extra/utils';
 	import { MobileMenuAppear } from '$lib/extra/themeStore';
@@ -42,6 +43,11 @@
 	.category {
 		display: flex;
 		flex-direction: column;
+	}
+	.category h3 {
+		margin: 0;
+		margin-block: 3px;
+		color: var(--font);
 	}
 	#current {
 		background-color: var(--primary100);
