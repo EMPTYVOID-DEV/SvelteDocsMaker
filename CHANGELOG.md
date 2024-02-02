@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.0
+
+### Minor Changes
+
+- 3d5cfe0: making improvements on the ui, fixing global color issues , removing font-awesome icons
+
 ## 0.5.2
 
 ### Patch Changes
