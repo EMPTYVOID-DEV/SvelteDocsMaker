@@ -56,7 +56,13 @@
 		width: 100%;
 		display: flex;
 		align-items: center;
-		color: var(--primary800);
+		--main: var(--primary400);
+		--icon: var(--primary400);
+	}
+	.next:hover,
+	.previous:hover {
+		--main: var(--primary800);
+		--icon: var(--primary800);
 	}
 	.next {
 		justify-content: flex-end;
@@ -68,6 +74,7 @@
 	.previous span {
 		font-size: var(--h4);
 		font-weight: bold;
+		color: var(--main);
 	}
 	.control {
 		display: flex;

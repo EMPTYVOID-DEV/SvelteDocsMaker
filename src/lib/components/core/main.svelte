@@ -192,19 +192,7 @@
 </main>
 
 <style>
-	:global(::-webkit-scrollbar) {
-		width: 0.5rem;
-	}
-	:global(::-webkit-scrollbar-track) {
-		border-radius: 12px;
-		background: var(--primary100);
-	}
-	:global(::-webkit-scrollbar-thumb) {
-		border-radius: 12px;
-		background: var(--primary800);
-	}
-
-	:global(*) {
+	:global(:not(dialog)) {
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
@@ -270,7 +258,6 @@
 		background-color: var(--bg);
 		position: sticky;
 		top: 0;
-		overflow: hidden;
 		z-index: 3;
 	}
 	#markdown {

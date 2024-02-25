@@ -13,7 +13,6 @@
 <style>
 	ul,
 	ol {
-		margin-left: 18px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;

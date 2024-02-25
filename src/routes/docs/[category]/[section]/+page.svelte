@@ -37,7 +37,7 @@
 	githubLink="https://github.com/Shinji13/Altron"
 	npmLink="https://www.npmjs.com/package/@altron/altron"
 	discordLink="/"
-	navBarHeight={80}
+	navBarHeight={100}
 	darkPrimary={'#3164ff'}
 	darkBgColor={'#000000'}
 	darkFontColor={'#ffffff'}

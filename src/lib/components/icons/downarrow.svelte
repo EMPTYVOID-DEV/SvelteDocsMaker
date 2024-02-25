@@ -4,6 +4,6 @@
 
 <style>
 	path {
-		fill: var(--primary800);
+		fill: var(--icon, var(--primary800));
 	}
 </style>

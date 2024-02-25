@@ -4,4 +4,4 @@
 	robust features and seamless integration.
 </p>
 
-<a href="/docs/SvelteDocs/Introduction">docs</a>
+<a href="/docs/Altron/Introduction">docs</a>
