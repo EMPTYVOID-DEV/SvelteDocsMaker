@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.1
+
+### Patch Changes
+
+- b4687f2: removing overflow hidden to navbarWrapper and making small changes to the ui
+
 ## 0.6.0
 
 ### Minor Changes
