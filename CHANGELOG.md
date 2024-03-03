@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.2
+
+### Patch Changes
+
+- 2ad920c: fixing some ui issues
+
 ## 0.6.1
 
 ### Patch Changes
