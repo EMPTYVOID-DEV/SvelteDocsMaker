@@ -2,7 +2,7 @@
 	//@ts-nocheck
 	import { onMount } from 'svelte';
 	import { closeSectionMenu, removeUrlEncoding } from '../../extra/utils';
-	import { MobileMenuAppear } from '$lib/extra/themeStore';
+	import { MobileMenuAppear } from '../../extra/stores';
 	export let pathname: string;
 	export let sectionsMap: Map<string, string[]>;
 	$: currentSection = pathname.split('/').at(-1);

@@ -254,7 +254,7 @@ export let bodyFont: string = `Helvetica, sans-serif`;
 
 #### `color props` (optional)
 
-Sveltedocsmaker uses three main colors for fonts, backgrounds, and the primary color. The primary color is transformed using the `getColorLevels` function to create three different levels: 800, 400, and 100, by adjusting the opacity. You can also provide dark mode counterparts.
+Sveltedocsmaker uses three main colors for fonts, backgrounds, and the primary color. The primary color is transformed using the `color-mix` to create three different levels: 800, 400, and 100, by adjusting the opacity. You can also provide dark mode counterparts.
 
 ```ts
 export let lightBgColor: string = '#dfe2ec';
@@ -473,10 +473,6 @@ The `topSectionThreshold` represent the height of the top sticky section (desk `
 
 This function is used to toggle off the section menu when the screen width exceeds a 768px threshold. It emits an event that triggers the provided `callback` when the section menu should be hidden.
 
-### `getColorLevels(color: string): [string, string, string]`
-
-Given a primary color in string format (e.g., '#3366FF'), this function generates three color variants with different opacities (800, 400, and 100) and returns them as an array of strings.
-
 ### `copyToKeyboard(text: string, timeout: number, cb: (state: boolean) => void)`
 
 This utility function is used to copy text to the user's clipboard when a button or element is clicked. It takes the following parameters:
@@ -498,5 +494,3 @@ Contributions to the sveltedocsmaker are welcome! Feel free to submit pull reque
 ## License
 
 Sveltedocsmaker is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
----.

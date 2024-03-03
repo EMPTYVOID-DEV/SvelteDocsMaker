@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { MobileMenuAppear, theme } from './themeStore';
+import { MobileMenuAppear, theme } from './stores';
 
 type ReadFileError =
 	| {

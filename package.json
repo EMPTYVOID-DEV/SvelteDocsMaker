@@ -43,9 +43,9 @@
 			"types": "./dist/extra/utils.d.ts",
 			"import": "./dist/extra/utils.js"
 		},
-		"./theme": {
-			"types": "./dist/extra/themeStore.d.ts",
-			"import": "./dist/extra/themeStore.js"
+		"./stores": {
+			"types": "./dist/extra/stores.d.ts",
+			"import": "./dist/extra/stores.js"
 		}
 	},
 	"files": [
@@ -87,8 +87,8 @@
 			"utils": [
 				"./dist/extra/utils.d.ts"
 			],
-			"theme": [
-				"./dist/extra/themeStore.d.ts"
+			"stores": [
+				"./dist/extra/stores.d.ts"
 			]
 		}
 	},

@@ -6,7 +6,7 @@
 	import Location from './Location.svelte';
 	import QuickNav from './quickNav.svelte';
 	import { setContext, type ComponentType, SvelteComponent } from 'svelte';
-	import { MobileMenuAppear, theme } from '../../extra/themeStore';
+	import { MobileMenuAppear, theme } from '../../extra/stores';
 	import SectionsMenu from './sectionsMenu.svelte';
 
 	// page content
@@ -322,11 +322,10 @@
 			display: flex;
 			background-color: var(--bg);
 			padding-bottom: 15px;
-			z-index: 4;
 		}
 		#markdown {
 			order: 2;
-			width: 100%;
+			width: 98%;
 		}
 	}
 </style>

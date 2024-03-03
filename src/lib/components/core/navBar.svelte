@@ -1,5 +1,5 @@
 <script>
-	import { theme, MobileMenuAppear } from '../../extra/themeStore';
+	import { theme, MobileMenuAppear } from '../../extra/stores';
 	import { getContext } from 'svelte';
 	import Discord from '../icons/discord.svelte';
 	import Npm from '../icons/npm.svelte';
