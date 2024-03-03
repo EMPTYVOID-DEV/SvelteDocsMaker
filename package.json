@@ -1,6 +1,6 @@
 {
 	"name": "sveltedocsmaker",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "Generate documentation easily using SvelteDocsMaker",
 	"maintainers": [
 		"Aymen keskas <keskasaymen8@gmail.com> (https://aymenkeskas.vercel.app/)"
