@@ -203,38 +203,52 @@
 
 	main :global(h1) {
 		font-size: var(--h1);
-		line-height: var(--lh1);
-		margin-top: var(--Mth1);
-		margin-bottom: var(--Mbh1);
 	}
+
 	main :global(h2) {
 		font-size: var(--h2);
-		line-height: var(--lh2);
-		margin-top: var(--Mth2);
-		margin-bottom: var(--Mbh2);
 	}
 	main :global(h3) {
 		font-size: var(--h3);
-		line-height: var(--lh3);
-		margin-top: var(--Mth3);
-		margin-bottom: var(--Mbh3);
 	}
 	main :global(h4) {
 		font-size: var(--h4);
-		line-height: var(--lh4);
-		margin-top: var(--Mth4);
-		margin-bottom: var(--Mbh4);
 	}
 
 	main :global(:where(p, span, a, li, code)) {
 		font-family: var(--bodyFont);
 		font-size: var(--body);
 		font-weight: 400;
-		line-height: var(--lhbody);
 	}
 
 	main :global(a) {
 		text-decoration: none;
+	}
+
+	#markdown :global(h1) {
+		line-height: var(--lh1);
+		margin-top: var(--Mth1);
+		margin-bottom: var(--Mbh1);
+	}
+	#markdown :global(h2) {
+		line-height: var(--lh2);
+		margin-top: var(--Mth2);
+		margin-bottom: var(--Mbh2);
+	}
+	#markdown :global(h3) {
+		line-height: var(--lh3);
+		margin-top: var(--Mth3);
+		margin-bottom: var(--Mbh3);
+	}
+
+	#markdown :global(h4) {
+		line-height: var(--lh4);
+		margin-top: var(--Mth4);
+		margin-bottom: var(--Mbh4);
+	}
+
+	#markdown :global(:where(p, span, a, li, code)) {
+		line-height: var(--lhbody);
 	}
 
 	#docs {
