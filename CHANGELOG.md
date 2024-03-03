@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.3
+
+### Patch Changes
+
+- 2d515d4: fixing global styles issuses
+
 ## 0.6.2
 
 ### Patch Changes
