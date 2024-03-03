@@ -5,7 +5,6 @@
 	import NavBar from './navBar.svelte';
 	import Location from './Location.svelte';
 	import QuickNav from './quickNav.svelte';
-	import { getColorLevels } from '../../extra/utils';
 	import { setContext, type ComponentType, SvelteComponent } from 'svelte';
 	import { MobileMenuAppear, theme } from '../../extra/themeStore';
 	import SectionsMenu from './sectionsMenu.svelte';
@@ -125,14 +124,14 @@
 		doubleMode
 	});
 
-	$: primaryColors = $theme ? getColorLevels(lightPrimary) : getColorLevels(darkPrimary);
+	$: primaryColor = $theme ? lightPrimary : darkPrimary;
 </script>
 
 <main
 	id="docs"
-	style:--primary800={primaryColors[0]}
-	style:--primary400={primaryColors[1]}
-	style:--primary100={primaryColors[2]}
+	style:--primary800={primaryColor}
+	style:--primary400="color-mix(in srgb, {primaryColor} 40%, transparent 60%)"
+	style:--primary100="color-mix(in srgb, {primaryColor} 22%, transparent 78%)"
 	style:--bg={$theme ? lightBgColor : darkBgColor}
 	style:--font={$theme ? lightFontColor : darkFontColor}
 	style:--h1={h1}
@@ -232,8 +231,6 @@
 		font-size: var(--body);
 		font-weight: 400;
 		line-height: var(--lhbody);
-		white-space: pre-wrap;
-		word-break: break-word;
 	}
 
 	main :global(a) {

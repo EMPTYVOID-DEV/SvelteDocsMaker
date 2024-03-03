@@ -42,6 +42,8 @@
 
 	#codeMdBlock > code {
 		padding-left: 10px;
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 
 	#codeMdBlock #lang {

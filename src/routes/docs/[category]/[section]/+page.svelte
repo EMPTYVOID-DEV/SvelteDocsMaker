@@ -38,10 +38,10 @@
 	npmLink="https://www.npmjs.com/package/@altron/altron"
 	discordLink="/"
 	navBarHeight={100}
-	darkPrimary={'#3164ff'}
-	darkBgColor={'#000000'}
-	darkFontColor={'#ffffff'}
-	lightPrimary={'#cc3300'}
-	lightBgColor={'#ffffff'}
-	lightFontColor={'#000000'}
+	darkBgColor="#000000"
+	lightBgColor="#ffffff"
+	darkPrimary="#3498db"
+	lightPrimary="#1076ba"
+	lightFontColor="#000000"
+	darkFontColor="#ffffff"
 />

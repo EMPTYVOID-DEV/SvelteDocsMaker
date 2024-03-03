@@ -16,5 +16,7 @@
 		font-size: inherit;
 		font-weight: inherit;
 		line-height: inherit;
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 </style>
