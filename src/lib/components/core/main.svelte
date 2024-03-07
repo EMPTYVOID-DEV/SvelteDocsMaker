@@ -8,7 +8,6 @@
 	import { setContext, type ComponentType, SvelteComponent } from 'svelte';
 	import { MobileMenuAppear, theme } from '../../extra/stores';
 	import SectionsMenu from './sectionsMenu.svelte';
-
 	// page content
 	export let data: {
 		md: string;
@@ -269,7 +268,7 @@
 		background-color: var(--bg);
 		position: sticky;
 		top: 0;
-		z-index: 3;
+		z-index: 99;
 	}
 	#markdown {
 		display: flex;
@@ -295,7 +294,6 @@
 	}
 	.mobileToc {
 		display: none;
-		position: sticky;
 		width: 100%;
 		flex-direction: column;
 		overflow-x: hidden;
@@ -326,6 +324,7 @@
 		#markdown {
 			order: 2;
 			width: 98%;
+			padding-left: 5px;
 		}
 	}
 </style>
