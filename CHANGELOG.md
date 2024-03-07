@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.4
+
+### Patch Changes
+
+- b4fc643: renaming the themestore export to stores export and removing z-index of mobileToc
+
 ## 0.6.3
 
 ### Patch Changes
