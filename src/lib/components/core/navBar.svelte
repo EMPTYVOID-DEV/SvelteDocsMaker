@@ -136,7 +136,7 @@
 		margin-left: 10px;
 		cursor: pointer;
 	}
-	@media screen and (width < 768px) {
+	@media screen and (width < 1024px) {
 		.control {
 			display: inline-block;
 		}

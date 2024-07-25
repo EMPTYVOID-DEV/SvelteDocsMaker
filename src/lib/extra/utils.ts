@@ -58,8 +58,8 @@ export function generateTableOfContents(mdText: string): { degree: number; name:
 	for (const line of lines) {
 		const match = line.match(headerRegex);
 		if (match) {
-			const degree = match[1].length;
-			const name = match[2].trim().replace(/[*_]/g, '');
+			const degree = match[1]!.length;
+			const name = match[2]!.trim().replace(/[*_]/g, '');
 			toc.push({ degree, name });
 		}
 	}
@@ -89,8 +89,8 @@ export const findSectionNeigbors = (sectionsMap: Map<string, string[]>, sectioNa
 export const getCategory = (sectioName: string, sectionsMap: Map<string, string[]>) => {
 	if (sectioName == '') return '';
 	const sectionsArray = Array.from(sectionsMap);
-	const categoryIndex = sectionsArray.findIndex((entry) => entry[1].includes(sectioName));
-	return sectionsArray[categoryIndex][0];
+	const mapEntry = sectionsArray.find((entry) => entry[1].includes(sectioName));
+	return mapEntry![0];
 };
 
 export function scrollToHeader(headerId: string, topSectionThreshold: number) {
@@ -125,7 +125,7 @@ export function headerOnView(callback: (headerText: string) => void, topSectionT
 }
 
 export function closeSectionMenu(callback: () => void) {
-	const mobileCross = window.matchMedia('screen and (width >= 768px)');
+	const mobileCross = window.matchMedia('screen and (width >= 1024px)');
 	mobileCross.addEventListener('change', () => {
 		callback();
 	});

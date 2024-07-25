@@ -32,7 +32,7 @@
 		font-weight: bold;
 		background-color: var(--primary800);
 	}
-	@media screen and (width < 768px) {
+	@media screen and (width < 1024px) {
 		table :global(th),
 		table :global(td) {
 			padding-left: 4px;

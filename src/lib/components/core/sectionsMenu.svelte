@@ -1,11 +1,11 @@
 <script lang="ts">
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	//@ts-nocheck
 	import { onMount } from 'svelte';
 	import { closeSectionMenu, removeUrlEncoding } from '../../extra/utils';
 	import { MobileMenuAppear } from '../../extra/stores';
 	export let pathname: string;
 	export let sectionsMap: Map<string, string[]>;
-	$: currentSection = pathname.split('/').at(-1);
 	onMount(() => {
 		closeSectionMenu(() => {
 			MobileMenuAppear.set(false);
@@ -20,11 +20,11 @@
 			{#each sectionsMap.get(category) as section}
 				<a
 					class="section"
-					id={section == removeUrlEncoding(currentSection) ? 'current' : ''}
+					id={removeUrlEncoding(pathname).includes(section) ? 'current' : ''}
 					on:click={() => {
 						MobileMenuAppear.set(false);
 					}}
-					href={'/docs/' + category + '/' + section}
+					href={`/docs/${category}/${section}`}
 				>
 					<span>{section}</span>
 				</a>

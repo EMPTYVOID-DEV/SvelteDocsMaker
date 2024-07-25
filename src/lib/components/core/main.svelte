@@ -304,7 +304,7 @@
 		overflow-x: hidden;
 		padding-bottom: 20px;
 	}
-	@media screen and (width < 768px) {
+	@media screen and (width < 1024px) {
 		.main {
 			display: flex;
 			flex-direction: column;
