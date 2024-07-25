@@ -1,5 +1,11 @@
 # sveltedocsmaker
 
+## 0.6.6
+
+### Patch Changes
+
+- 882c304: adjusting the active section condition and adjusting the media query from 764px to 1024px
+
 ## 0.6.5
 
 ### Patch Changes
